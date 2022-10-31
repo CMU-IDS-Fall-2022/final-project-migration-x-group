@@ -1,6 +1,6 @@
 # Final Project Proposal
 
-**GitHub Repo URL**: TODO
+**GitHub Repo URL**: [TODO](https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group)
 Project Proposal: Reasons of Young Adult Migration
 Team Member: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun
 Oct 31 2022 
