@@ -1,8 +1,8 @@
 # Final Project Proposal
 
-**GitHub Repo URL**: [TODO](https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group)
-Project Proposal: Reasons of Young Adult Migration
-Team Member: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun
+**GitHub Repo URL**: https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group
+Project Proposal: Reasons for Young Adult Migration and its social-economic impacts
+Team Members: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun
 Oct 31 2022 
 
 ## Problem Description
@@ -10,12 +10,12 @@ Do you ever wonder how far people migrate between childhood and young adulthood?
 
 We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, race, schooling, job market or climate? 
 
-The dataset we will use is
+Datasets we will use are:
 - Migration Pattern of young adults
 https://data.migrationpatterns.org/MigrationPatternsData.zip
-Here are some existing interactive data applications regarding this dataset
-- Young Adult Migration https://migrationpatterns.org/
-- Neighborhoods Matter https://opportunityinsights.org/neighborhoods/
+Here are some existing interactive data applications regarding this dataset  <br/>
+- Young Adult Migration https://migrationpatterns.org/                       
+- Neighborhoods Matter https://opportunityinsights.org/neighborhoods/        
 
 
 ## Questions in action (granular level): 
@@ -32,5 +32,5 @@ Here are some existing interactive data applications regarding this dataset
 As the problem is geographically related, we would like to focus on map interactive visuals mainly. A U.S. map will provide a general overview of the distribution, and we will also include some connected charts and user input fields to show detailed information for specific groups, such as grouping by races and parental incomes.
 
 ## Related Work 
-Neighborhood influences on young children's emotional and behavioral problems https://aifs.gov.au/research/family-matters/no-84/neighbourhood-influences-young-childrens-emotional-and-behavioural
-Young Adult Migration https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html
+- Neighborhood influences on young children's emotional and behavioral problems https://aifs.gov.au/research/family-matters/no-84/neighbourhood-influences-young-childrens-emotional-and-behavioural
+- Young Adult Migration https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html
