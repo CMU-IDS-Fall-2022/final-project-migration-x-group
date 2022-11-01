@@ -1,7 +1,7 @@
 # Final Project Proposal
 
 **GitHub Repo URL**: https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group <br/>
-### Reasons for Young Adult Migration and its social-economic impacts <br/>
+### Reasons for Young Adult Migration and Its Social-Economic Impacts <br/>
 Team Members: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun 
 
 ## Problem Description
