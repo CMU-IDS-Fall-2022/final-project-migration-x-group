@@ -35,5 +35,7 @@ Here are some existing interactive data applications regarding this dataset  <br
 As the problem is geographically related, we would like to focus on map interactive visuals mainly. A U.S. map will provide a general overview of the distribution, and we will also include some connected charts and user input fields to show detailed information for specific groups, such as grouping by races and parental incomes.
 
 ## Related Work 
-- Neighborhood influences on young children's emotional and behavioral problems https://aifs.gov.au/research/family-matters/no-84/neighbourhood-influences-young-childrens-emotional-and-behavioural
-- Young Adult Migration https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html
+- Neighborhood influences on young children's emotional and behavioral problems
+- https://aifs.gov.au/research/family-matters/no-84/neighbourhood-influences-young-childrens-emotional-and-behavioural
+- Young Adult Migration 
+- https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html
