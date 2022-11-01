@@ -28,7 +28,7 @@ Datasets we will use are:
 8. [Prediction] Does growing up in a higher-mobility area have a causal effect on children's outcomes [income, social skills, etc.] in adulthood in proportion to childhood exposure?
 
 ## Proposed Solution
-As the problem is geographically related, we would like to focus on map interactive visuals mainly. A U.S. map will provide a general overview of the distribution, and we will also include some connected charts and user input fields to show detailed information for specific groups, such as grouping by races and parental incomes.
+As the problem is geographically related, we would like to focus on map interactive visuals mainly. A U.S. map will provide a general overview of the distribution and patterns if there are any. We will also include connected charts and user input fields to show detailed information for specific groups, such as grouping by race and parental income.
 
 ## Related Work 
 - Neighborhood influences on young children's emotional and behavioral problems <br/>
