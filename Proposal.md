@@ -14,8 +14,7 @@ Do you ever wonder how far people migrate between childhood and young adulthood?
 We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, race, schooling, job market or climate? 
 
 Datasets we will use are:
-- Migration Pattern of young adults  
-https://data.migrationpatterns.org/MigrationPatternsData.zip <br/>
+- Migration Pattern of young adults  https://data.migrationpatterns.org/MigrationPatternsData.zip <br/>
 
 Here are some existing interactive data applications regarding this dataset  <br/>
 - Young Adult Migration https://migrationpatterns.org/                       
