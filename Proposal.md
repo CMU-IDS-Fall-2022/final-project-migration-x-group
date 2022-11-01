@@ -16,10 +16,6 @@ We want to explore these questions using publicly available statistics on the mi
 Datasets we will use are:
 - Migration Pattern of young adults  https://data.migrationpatterns.org/MigrationPatternsData.zip <br/>
 
-Here are some existing interactive data applications regarding this dataset  <br/>
-- Young Adult Migration https://migrationpatterns.org/                       
-- Neighborhoods Matter https://opportunityinsights.org/neighborhoods/        
-
 
 ## Questions in action (granular level): 
 1. What are the average miles (metric) for young adults who grew up in A and moved to B? 
