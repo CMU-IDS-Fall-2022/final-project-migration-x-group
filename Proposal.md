@@ -1,9 +1,8 @@
 # Final Project Proposal
 
-**GitHub Repo URL**: https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group
-Project Proposal: Reasons for Young Adult Migration and its social-economic impacts
-Team Members: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun
-Oct 31 2022 
+**GitHub Repo URL**: https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group <br/>
+Project Proposal: Reasons for Young Adult Migration and its social-economic impacts <br/>
+Team Members: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun 
 
 ## Problem Description
 Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. Therefore, we propose an interactive data science application that will allow stakeholders in economic development to interpret migration patterns of young adults from their state.
@@ -15,7 +14,7 @@ Do you ever wonder how far people migrate between childhood and young adulthood?
 We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, race, schooling, job market or climate? 
 
 Datasets we will use are:
-- Migration Pattern of young adults
+- Migration Pattern of young adults  <br/>
 https://data.migrationpatterns.org/MigrationPatternsData.zip
 Here are some existing interactive data applications regarding this dataset  <br/>
 - Young Adult Migration https://migrationpatterns.org/                       
