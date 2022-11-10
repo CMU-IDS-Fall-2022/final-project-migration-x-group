@@ -1,7 +1,7 @@
 # Final Project Proposal
 
 **GitHub Repo URL**: https://github.com/CMU-IDS-Fall-2022/final-project-migration-x-group <br/>
-### Reasons for Young Adult Migration and Its Social-Economic Impacts <br/>
+### Discover Reasons for Young Adult Migration and Its Social-Economic Impacts <br/>
 Team Members: Cuiting Li, Haoyu Wang, Xinzhu Wang, Darren Butler, Yue Sun 
 
 ## Problem Description
@@ -35,3 +35,10 @@ As the problem is geographically related, we would like to focus on map interact
   https://aifs.gov.au/research/family-matters/no-84/neighbourhood-influences-young-childrens-emotional-and-behavioural
 - Young Adult Migration <br/>
   https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html
+
+
+## Sketches and Data Analysis
+### Data Processing
+
+
+### System Design 
