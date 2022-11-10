@@ -42,4 +42,4 @@ As the problem is geographically related, we would like to focus on map interact
 
 
 ### System Design 
-![alt text](..\Desktop\CMU\IDS\IDS Mirgration Group\page1.png)
+![Average Miles of Migration](https://drive.google.com/drive/u/0/folders/1BnSDsMsfe9xsrkvbRBpt-YVeRuYmMfJw)
