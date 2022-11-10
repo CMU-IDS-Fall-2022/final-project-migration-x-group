@@ -44,3 +44,17 @@ As the problem is geographically related, we would like to focus on map interact
 ### System Design 
 ![Average Miles of Migration](https://user-images.githubusercontent.com/75749274/201190201-3d3ef5f6-1355-4a89-b213-c1961587d54c.png)
 
+![Top 10 Popular Destinations](https://user-images.githubusercontent.com/75749274/201190302-1a91a6f3-bfe2-43b8-8603-c65b3fa126af.png)
+
+![Migration Rate by State](https://user-images.githubusercontent.com/75749274/201190316-2d48a95d-7f9f-45be-816a-fb1a07179a69.png)
+
+![Relationship between Migration Rates and Parental Income](https://user-images.githubusercontent.com/75749274/201190342-f1709d32-4526-48ca-b632-76f3c23b19fc.png)
+
+
+![Relationship between Median Household Income and Percentage of Immigrants](https://user-images.githubusercontent.com/75749274/201190359-0337ccdd-2c20-4c9e-b42f-4807042c6ecd.png)
+
+
+![Relationship between Education Rate and Migration Destination](https://user-images.githubusercontent.com/75749274/201190379-96679288-380f-4f8f-8f65-55ee3fd3df0d.png)
+
+
+![Relationship between Employment and Migration Rate](https://user-images.githubusercontent.com/75749274/201190402-727d13af-5d9b-4c05-9eed-738423b82080.png)
