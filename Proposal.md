@@ -48,7 +48,7 @@ By using the dataset, we seek the answer for the following questions.
 4. How does the migration rate vary by state?
 5. How does the migration rate vary by race?
 
-After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculate the migration rate : <br/>
+After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculate the migration rate : 
  ##### migration_rate = (# of n if o_cz != d_cz) / n       <br/>
 
 Findings are: 
