@@ -42,4 +42,5 @@ As the problem is geographically related, we would like to focus on map interact
 
 
 ### System Design 
-![Average Miles of Migration](https://drive.google.com/file/d/1DaKRdv_wg5BdHMCfN6nZCL3FUjEzufsM/view?usp=share_link)
+![Average Miles of Migration](https://user-images.githubusercontent.com/75749274/201190201-3d3ef5f6-1355-4a89-b213-c1961587d54c.png)
+
