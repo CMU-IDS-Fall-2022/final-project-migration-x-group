@@ -48,11 +48,28 @@ By using the dataset, we seek the answer for the following questions.
 4. How does the migration rate vary by state?
 5. How does the migration rate vary by race?
 
-After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculat the migration rate : <br/>
+After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculate the migration rate : <br/>
 * when o_cz = d_cz, migration_rate = 0
 * when o_cz != d_cz, migration_rate = (# of n when o_cz != d_cz) / n          <br/>
 
-The other thing we need to consider is that the dataset is quite large (average file size is 50 MB); we might need to cut some of them, figure out how to do that, and make sure the data is representative after being cut.
+Findings are: 
+- California has the most number of migration, followed by Texas and Florida.
+- Top 3 states (measured by migration rate) are Wyoming, Montana and South Dakota
+- Race - Other has the most number of migration across all the states.
+- Race - Other has the largest number of migration rate, followed by Asian    <br/>
+
+In addition, the origin and destination counts by state are about the same, which implies that the collectors of the data may have collected the data intentionally to balance the origin and destination representation. 
+
+
+![image](https://user-images.githubusercontent.com/75749274/201198365-1ba3977b-70e5-4cf6-8e9f-5140a5c215f6.png)
+
+
+We can also see that counts for the top 100 commuting zone destinations are the same. 
+
+![image](https://user-images.githubusercontent.com/75749274/201198483-316d472e-ddef-4f8e-85ec-a6fd478bd828.png)
+
+
+Last but not least, we need to consider is that the dataset is quite large (average file size is 50 MB); we might need to cut some of them, figure out how to do that, and make sure the data is representative after being cut.
 
 ![image](https://user-images.githubusercontent.com/75749274/201192947-800d7747-b2ad-45ea-8ca4-b02c8a25de7f.png)
 
