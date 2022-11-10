@@ -96,6 +96,7 @@ For data processing and cleaning, data from 2000-2018 are scattered in different
 ![Top 10 Popular Destinations](https://user-images.githubusercontent.com/75749274/201190302-1a91a6f3-bfe2-43b8-8603-c65b3fa126af.png)
 
 ![Migration Rate by State](https://user-images.githubusercontent.com/75749274/201190316-2d48a95d-7f9f-45be-816a-fb1a07179a69.png)
+ “Other” category includes not only other races but also people who are not linked to the Decennial Census or ACS.
 
 ![Relationship between Migration Rates and Parental Income](https://user-images.githubusercontent.com/75749274/201190342-f1709d32-4526-48ca-b632-76f3c23b19fc.png)
 
