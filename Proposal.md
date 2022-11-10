@@ -52,9 +52,9 @@ After the initial EDA, we found that the dataset is clean and complete. The majo
  ##### migration_rate = (# of n if o_cz != d_cz) / n       <br/>
 
 Findings are: 
-- California has the most number of migration, followed by Texas and Florida.
+- California has the most number of migration, followed by Texas and Florida
 - Top 3 states (measured by migration rate) are Wyoming, Montana and South Dakota
-- Race - Other has the most number of migration across all the states.
+- Race - Other has the most number of migration across all the states
 - Race - Other has the largest number of migration rate, followed by Asian    <br/>
 
 In addition, the origin and destination counts by state are about the same, which implies that the collectors of the data may have collected the data intentionally to balance the origin and destination representation. 
