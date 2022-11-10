@@ -2,7 +2,7 @@
 
 * **Online URL**: TODO
 * **Team members**:
-  Contact person: 
+  - Contact person: 
   * cuitingl@andrew.cmu.edu, haoyuw2@andrew.cmu.edu, ddbutler@andrew.cmu.edu, xinzhuwa@andrew.cmu.edu, yuesun@andrew.cmu.edu
 
 ## Work distribution
