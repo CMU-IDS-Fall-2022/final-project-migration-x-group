@@ -51,7 +51,8 @@ By using the dataset, we seek the answer for the following questions.
 After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculat the migration rate : <br/>
 * when o_cz = d_cz, migration_rate = 0
 * when o_cz != d_cz, migration_rate = (# of n when o_cz != d_cz) / n          <br/>
-The other thing we need to consider is that the dataset is quite large; we might need to cut some of them, figure out how to do that, and make sure the data is representative after being cut.
+
+The other thing we need to consider is that the dataset is quite large (average file size is 50 MB); we might need to cut some of them, figure out how to do that, and make sure the data is representative after being cut.
 
 ![image](https://user-images.githubusercontent.com/75749274/201192947-800d7747-b2ad-45ea-8ca4-b02c8a25de7f.png)
 
