@@ -48,7 +48,10 @@ By using the dataset, we seek the answer for the following questions.
 - 4. How does the migration rate vary by state?
 - 5. How does the migration rate vary by race?
 
-After initial EDA, as the dataset is clean and complete, we do not have to do much processing and cleaning in this dataset. One thing we might need to do is that the dataset is quite large, we might need to cut some of them and we have to figure out how to do that and make sure the data is representative after being cut.
+After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculat the migration rate : <br/>
+* when o_cz = d_cz, migration_rate = 0
+* when o_cz != d_cz, migration_rate = (# of n when o_cz != d_cz) / n          <br/>
+The other thing we need to consider is that the dataset is quite large; we might need to cut some of them, figure out how to do that, and make sure the data is representative after being cut.
 
 ![image](https://user-images.githubusercontent.com/75749274/201192947-800d7747-b2ad-45ea-8ca4-b02c8a25de7f.png)
 
@@ -56,7 +59,7 @@ After initial EDA, as the dataset is clean and complete, we do not have to do mu
 #### PART B: Factors Influencing Migration Rate
 - 1.Parental Income   
 Data Source: https://data.migrationpatterns.org/MigrationPatternsData.zip. This is the same dataset as above.
-Objective: by exploring and visualizing dataset: try to answer How does migration rates vary by parental income?
+Objective: by exploring and visualizing dataset: How does migration rates vary by parental income?
 
 - 2. Economy 
 Objective: by exploring and visualizing dataset: try to answer How does the median household income affect migration.
@@ -65,7 +68,7 @@ We plan to use median household income as the metric for the commuting zone’s 
 
 The original formats of State and County Estimates in different years are not consistent, for example, early data tables don’t contain labels but latest datatable contain labels for each column. Besides, the data needs to be aggregated on the commuting zone level. In addition, considering easier implementation and intuitive interaction, we plan to use only one numeric value as the economic metric for each commuting zone. Below are data processing steps:
 Aggregate all data from 2000 - 2018 into a big datatable, with each column as the median household income for each year. Below is an example of the desired data table.
-Aggregate the county-level data to CZ-level. Since the commuting zone (CZ) is grouped by counties, we can aggregate the county-level median household income data to create a data table with CZ-level median household income. The U.S. Department of Agriculture (USDA) website provides a datatable of Commuting Zones and Labor Market Area, based on which we plan to aggregate county-level data to CZ-level data.
+Aggregate the county-level data to CZ-level. Since the commuting zone (CZ) is grouped by counties, we can aggregate the county-level median household income data to create a data table with CZ-level median household income. The U.S. Department of Agriculture (USDA) website provides a datatable of Commuting Zones and Labor Market Area, based on which we plan to aggregate county-level data to CZ-level data. <br/>
 Calculate the average of median household income from 2000 to 2018. Another data processing task we are facing relates to the time of household income data. Which year(s) of dataset should we use? Given that the samples in the original migration dataset are U.S. born children in the 1978-1992 birth cohorts, and the migration is counted as an individual's location from 16 to 26 years old, it would make sense to analyze the household income data from 2000-2018. 2000 is when the first group of individuals reached 16, and 2018 is when the last group of individuals reached 26 years old. Therefore we decided to calculate the average of median household income from 2000 to 2018 as the metric for CZ’s economic developmental level.
 
 - 3. Education 
@@ -81,14 +84,12 @@ Objective: by exploring and visualizing dataset: try to answer How does job affe
 Job openings and employment were selected as an analysis factor. Given that this data is not available in the original migration dataset, we used the dataset https://data.census.gov/cedsci/table?q=job%20opening%20by%20county&tid=ACSDP1Y2021.DP03 from the U.S. Census Bureau website. This dataset contains the total number of employment and percentage of employment of population age 16 and over of different counties in different states from 2010-2018 which is the time frame for the period we want to investigate. We have to do some data formatting of converting different counties into zip code zoom to match the granularity of the study.
 For data processing and cleaning, data from 2000-2018 are scattered in different csv files, we have to do some data aggregation. Also, for some counties in certain years the data is missing, so we have to do some data cleaning.
 
-
-
 ![image](https://user-images.githubusercontent.com/75749274/201193546-93022479-9325-415c-87a5-42d445bc513b.png)
 
 
 
-
 ### System Design 
+<br/>
 ![Average Miles of Migration](https://user-images.githubusercontent.com/75749274/201190201-3d3ef5f6-1355-4a89-b213-c1961587d54c.png)
 
 ![Top 10 Popular Destinations](https://user-images.githubusercontent.com/75749274/201190302-1a91a6f3-bfe2-43b8-8603-c65b3fa126af.png)
@@ -97,11 +98,8 @@ For data processing and cleaning, data from 2000-2018 are scattered in different
 
 ![Relationship between Migration Rates and Parental Income](https://user-images.githubusercontent.com/75749274/201190342-f1709d32-4526-48ca-b632-76f3c23b19fc.png)
 
-
 ![Relationship between Median Household Income and Percentage of Immigrants](https://user-images.githubusercontent.com/75749274/201190359-0337ccdd-2c20-4c9e-b42f-4807042c6ecd.png)
 
-
 ![Relationship between Education Rate and Migration Destination](https://user-images.githubusercontent.com/75749274/201190379-96679288-380f-4f8f-8f65-55ee3fd3df0d.png)
-
 
 ![Relationship between Employment and Migration Rate](https://user-images.githubusercontent.com/75749274/201190402-727d13af-5d9b-4c05-9eed-738423b82080.png)
