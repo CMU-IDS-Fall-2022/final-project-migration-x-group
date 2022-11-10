@@ -42,11 +42,11 @@ As the problem is geographically related, we would like to focus on map interact
 #### PART A: Migration Analysis 
 Data Source: https://data.migrationpatterns.org/MigrationPatternsData.zip   <br/>
 By using the dataset, we seek the answer for the following questions.
-- 1. What is the migration number for each state?
-- 2. What is the average miles of migration
-- 3. What are the most/least popular destinations?
-- 4. How does the migration rate vary by state?
-- 5. How does the migration rate vary by race?
+1. What is the migration number for each state?
+2. What is the average miles of migration
+3. What are the most/least popular destinations?
+4. How does the migration rate vary by state?
+5. How does the migration rate vary by race?
 
 After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculat the migration rate : <br/>
 * when o_cz = d_cz, migration_rate = 0
