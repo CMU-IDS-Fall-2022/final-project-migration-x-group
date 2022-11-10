@@ -90,8 +90,10 @@ Calculate the average of median household income from 2000 to 2018. Another data
 
 ####  3. Education 
 Objective: by exploring and visualizing dataset: try to answer How does education level or schooling situation in the region affect the migration.
-Education/schooling was selected as an analysis factor. Given that this data is not available in the original migration dataset, we used the SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER dataset from the U.S. Census Bureau website. This dataset contains the number of school enrollments by the level of school for the population 3 years and over by county and state. The dataset I have performed EDA on contains data from 2013 - 2018. 
+Education/schooling was selected as an analysis factor. Given that this data is not available in the original migration dataset, we used the SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER dataset from the U.S. Census Bureau website. This dataset contains the number of school enrollments by the level of school for the population 3 years and over by county and state. The dataset I have performed EDA on contains data from 2013 - 2018.  <br/>
 The original format of SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER is not suitable for Python analysis. City and state combinations were listed as columns, while the levels of school were listed as rows, all of which were in weird formatting. All the numbers had “,” in between and were in the “string” format. In addition, an additional educational rate column would be useful in performing analysis. Initial data processing was done by swapping axes, fixing the indexes and the header, fixing all the formatting, deleting unnecessary text strings, and adding an “Educational rate” column to the data table. Below is a screenshot from the processed ‘SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER’ data table.
+
+
 ![image](https://user-images.githubusercontent.com/75749274/201193414-9a7812d3-8a13-428a-85f0-3359c53355d9.png)
 
 
