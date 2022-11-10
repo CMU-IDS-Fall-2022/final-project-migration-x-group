@@ -57,11 +57,11 @@ The other thing we need to consider is that the dataset is quite large; we might
 
 
 #### PART B: Factors Influencing Migration Rate
-##### 1.Parental Income   
-Data Source: https://data.migrationpatterns.org/MigrationPatternsData.zip. This is the same dataset as above.
+#### 1.Parental Income   
+Data Source: https://data.migrationpatterns.org/MigrationPatternsData.zip. This is the same dataset as above.  <br/>
 Objective: by exploring and visualizing dataset: How does migration rates vary by parental income?
 
-##### 2. Economy 
+#### 2. Economy 
 Objective: by exploring and visualizing dataset: try to answer How does the median household income affect migration.
 We plan to use median household income as the metric for the commuting zone’s economic development. Given that this data is not available in the original migration dataset, we used the SAIPE ‘State and County Estimates’ Datasets from the United States Census Bureau website. This dataset contains  estimated poverty rate and estimate of median household income of each county in the U.S. from 2000 to 2021. Below is a screenshot of the ‘State and County Estimates for 2004’ data table.
 ![image](https://user-images.githubusercontent.com/75749274/201193237-0fdcf9f2-f6ba-4c8c-8ea4-f89b1835a5e7.png)
@@ -71,7 +71,7 @@ Aggregate all data from 2000 - 2018 into a big datatable, with each column as th
 Aggregate the county-level data to CZ-level. Since the commuting zone (CZ) is grouped by counties, we can aggregate the county-level median household income data to create a data table with CZ-level median household income. The U.S. Department of Agriculture (USDA) website provides a datatable of Commuting Zones and Labor Market Area, based on which we plan to aggregate county-level data to CZ-level data. <br/>
 Calculate the average of median household income from 2000 to 2018. Another data processing task we are facing relates to the time of household income data. Which year(s) of dataset should we use? Given that the samples in the original migration dataset are U.S. born children in the 1978-1992 birth cohorts, and the migration is counted as an individual's location from 16 to 26 years old, it would make sense to analyze the household income data from 2000-2018. 2000 is when the first group of individuals reached 16, and 2018 is when the last group of individuals reached 26 years old. Therefore we decided to calculate the average of median household income from 2000 to 2018 as the metric for CZ’s economic developmental level.
 
-#####  3. Education 
+####  3. Education 
 Objective: by exploring and visualizing dataset: try to answer How does education level or schooling situation in the region affect the migration.
 Education/schooling was selected as an analysis factor. Given that this data is not available in the original migration dataset, we used the SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER dataset from the U.S. Census Bureau website. This dataset contains the number of school enrollments by the level of school for the population 3 years and over by county and state. The dataset I have performed EDA on contains data from 2013 - 2018. 
 The original format of SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER is not suitable for Python analysis. City and state combinations were listed as columns, while the levels of school were listed as rows, all of which were in weird formatting. All the numbers had “,” in between and were in the “string” format. In addition, an additional educational rate column would be useful in performing analysis. Initial data processing was done by swapping axes, fixing the indexes and the header, fixing all the formatting, deleting unnecessary text strings, and adding an “Educational rate” column to the data table. Below is a screenshot from the processed ‘SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER’ data table.
@@ -79,7 +79,7 @@ The original format of SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3
 
 
 
-#####  4.Job Market
+####  4.Job Market
 Objective: by exploring and visualizing dataset: try to answer How does job affect the migration. Is there any correlation between employment rate and the destinations that people migrate to?  <br/>
 Job openings and employment were selected as an analysis factor. Given that this data is not available in the original migration dataset, we used the dataset https://data.census.gov/cedsci/table?q=job%20opening%20by%20county&tid=ACSDP1Y2021.DP03 from the U.S. Census Bureau website. This dataset contains the total number of employment and percentage of employment of population age 16 and over of different counties in different states from 2010-2018 which is the time frame for the period we want to investigate. We have to do some data formatting of converting different counties into zip code zoom to match the granularity of the study.
 For data processing and cleaning, data from 2000-2018 are scattered in different csv files, we have to do some data aggregation. Also, for some counties in certain years the data is missing, so we have to do some data cleaning.
@@ -89,7 +89,7 @@ For data processing and cleaning, data from 2000-2018 are scattered in different
 
 
 ### System Design 
-<br/>
+
 ![Average Miles of Migration](https://user-images.githubusercontent.com/75749274/201190201-3d3ef5f6-1355-4a89-b213-c1961587d54c.png)
 
 ![Top 10 Popular Destinations](https://user-images.githubusercontent.com/75749274/201190302-1a91a6f3-bfe2-43b8-8603-c65b3fa126af.png)
