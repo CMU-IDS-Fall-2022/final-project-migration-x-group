@@ -107,7 +107,7 @@ For data processing and cleaning, data from 2000-2018 are scattered in different
 
 
 
-### System Design 
+### System Design (Sketches)
 
 ![Average Miles of Migration](https://user-images.githubusercontent.com/75749274/201190201-3d3ef5f6-1355-4a89-b213-c1961587d54c.png)
 
