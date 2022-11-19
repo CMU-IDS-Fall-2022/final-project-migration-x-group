@@ -1,12 +1,22 @@
-from logzero import logger
-
-import pandas as pd
-import streamlit as st
-
 import data_munging
-import plot_migration
-
 from data_munging import ALL_STATES_TITLE
+import pandas as pd
+import numpy as np
+import streamlit as st
+import plot_migration
+from logzero import logger
+import streamlit as st
+import altair as alt
+from re import U
+from matplotlib import pyplot as plt
+import seaborn as sns
+
+
+
+@st.cache(allow_output_mutation=True)  # add caching so we load the data only once
+def load_data(file_path):
+    return pd.read_csv(file_path)
+
 
 padding = 0
 st.set_page_config(page_title="Young Adult Migration and Its Social-Economic Impacts", layout="wide", page_icon="📍")
@@ -31,7 +41,7 @@ st.title("Reasons for Young Adult Migration")
 st.header("Overview")
 
 ##VIZ 1
-st.subheader('Average miles of migration')
+st.subheader('Overview of Young Adult Migration')
 
 st.write(
     """
@@ -40,15 +50,63 @@ st.write(
 )
 
 ##VIZ 2
-st.header("Top 10 Popular Destinations")
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
+st.subheader("Average Migration Rate By State and Race")
+
+# 1. loading dataset
+
+od_race = load_data('od_race.csv')
+st.text("Let's look at the dataset - count and fractions of people who move between each origin and destination commuting zone pair separately by race")
+
+# 2. show dataframe or not
+if st.checkbox("Show Raw Data"):
+    st.write(od_race.head(5))
+
+# 3. Insights from Data
+od_race['condition'] = np.where((od_race['o_cz'] == od_race['d_cz']), 'remove', 'keep')
+sorted = od_race.sort_values(by = ['condition'], ascending = False)
+df1 = od_race.groupby(['o_state_name','pool','condition']).agg({'n':['mean', 'sum']})
+df1.columns = ['n_mean', 'n_sum']
+df1 = df1.reset_index()
+
+df_group = od_race.groupby(['o_state_name','pool']).agg({'n':['sum']})
+df_group = df_group.reset_index()
+df_group_con = pd.concat([df_group]*2, ignore_index=True) # to have same # of records as df1
+
+df_group_con.columns = df_group_con.columns.get_level_values(0)  # to solve nested index
+df_group_sorted = df_group_con.sort_values(['o_state_name', 'pool'])
+df_group_sorted = df_group_sorted.reset_index()
+
+df1_sorted = df1.sort_values(['o_state_name', 'pool'])
+df1_sorted['rate'] =  df1_sorted['n_sum'] / df_group_sorted['n']
+df1_cz_rate = df1_sorted \
+                   .query("(condition == 'keep')") \
+                   .groupby(['o_state_name', 'pool'], as_index = False) \
+                   .agg(average_rate = ("rate" , 'mean')) 
+
+
+
+highlight = alt.selection(type='single', on='mouseover',
+                          fields=['pool'], nearest=True)
+rate_by_state_race = alt.Chart(df1_cz_rate).encode(
+                                              x='o_state_name:N',
+                                              y='average_rate:Q',
+                                              color='pool:N'
+                    )
+points = rate_by_state_race.mark_circle().encode(
+    opacity=alt.value(0)
+).add_selection(
+    highlight
+).properties(
+    width=1200
 )
+lines = rate_by_state_race.mark_line().encode(
+    size=alt.condition(~highlight, alt.value(1), alt.value(3))
+)
+st.write(points + lines)
+st.subheader("Race Black has the highest average migration rate across U.S.")
 
 ##VIZ 3
-st.header("Migration rate by state")
+st.subheader("Migration Rate by State")
 st.write(
     """
     [VIZ TO BE INSERTED]
