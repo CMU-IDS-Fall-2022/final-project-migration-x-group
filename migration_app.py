@@ -1,4 +1,5 @@
 import data_munging
+import median_income_process
 from data_munging import ALL_STATES_TITLE
 import pandas as pd
 import numpy as np
@@ -40,6 +41,7 @@ st.title("Reasons for Young Adult Migration")
 
 st.header("Overview")
 
+
 ##VIZ 1
 st.subheader('Overview of Young Adult Migration')
 
@@ -51,7 +53,7 @@ st.write(
 
 ##VIZ 2
 st.subheader("Average Migration Rate By State and Race")
-
+'''
 # 1. loading dataset
 
 od_race = load_data('od_race.csv')
@@ -147,17 +149,18 @@ st.write(
     [VIZ TO BE INSERTED]
     """
 )
-
+'''
 #NAVIGATION SIDEBAR
 with st.sidebar:
     st.markdown('# Navigation')
     st.markdown('## Overview')
+    #st.markdown("[Overview](#overview)") #create an anchor link to the header overview
     st.markdown('## Average miles of migration')
     st.markdown('## Most/least popular destinations')
     st.markdown('## Migration rate by sate')
     st.markdown("## Factors influencing migration rate")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Parental Income")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Economy")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Economy](#economy)")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Education")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Job Market")
 
@@ -267,3 +270,21 @@ if pressed:
 
     clean_edges = data_munging.table_edges(edges, selectbox_direction)
     table_loc.table(clean_edges.head(20))
+
+
+
+## Economy
+st.header("Economy")
+st.subheader("How do median household incomes of each state affect migration?")
+
+
+df_income = median_income_process.get_income_df()
+scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
+    x='mean',
+    y='outbound_migration',
+    tooltip=['state_name','mean','outbound_migration']
+).interactive()
+st.write(scatter_income)
+
+st.write("Correlation Analysis")
+st.write("[some table / text describing the correlation]")
