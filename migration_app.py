@@ -284,6 +284,8 @@ scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
     y='outbound_migration',
     tooltip=['state_name','mean','outbound_migration']
 ).interactive()
+
+scatter_income.title = 'Outbound Migration Number and Average Median Household Income by State'
 st.write(scatter_income)
 
 st.write("Correlation Analysis")
