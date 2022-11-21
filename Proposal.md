@@ -50,6 +50,11 @@ By using the dataset, we seek the answer for the following questions.
 
 After the initial EDA, we found that the dataset is clean and complete. The major processing we did is to use below formula to calculate the migration rate : 
  ##### migration_rate = (# of n if o_cz != d_cz) / n       <br/>
+* n = The number of individuals from origin o living in destination d.
+* o_cz = The numeric identifier of the commuting zone (CZ) in which the individual resided
+in childhood/at age 16
+* d_cz = The numeric identifier of the CZ in which the individual resides in young
+adulthood/at age 26
 
 Findings are: 
 - California has the most number of migration, followed by Texas and Florida
