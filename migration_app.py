@@ -103,7 +103,7 @@ df1_cz_rate = df1_sorted \
                    .agg(average_rate = ("rate" , 'mean')) 
 
 
-
+# The below code is adapted from https://altair-viz.github.io/gallery/multiline_highlight.html
 highlight = alt.selection(type='single', on='mouseover',
                           fields=['pool'], nearest=True)
 rate_by_state_race = alt.Chart(df1_cz_rate).encode(
