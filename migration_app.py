@@ -55,9 +55,27 @@ st.write(
 st.subheader("Average Migration Rate By State and Race")
 '''
 # 1. loading dataset
+# the original od_race file size is too big (>100MB), so divide the big file into several files(<25MB) then load and combine individual dataframe
+od_race1 = pd.read_csv('od_race_1.csv')
+od_race2 = pd.read_csv('od_race_2.csv')
+od_race3 = pd.read_csv('od_race_3.csv')
+od_race4 = pd.read_csv('od_race_4.csv')
+od_race5 = pd.read_csv('od_race_5.csv')
+od_race6 = pd.read_csv('od_race_6.csv')
+od_race7 = pd.read_csv('od_race_7.csv')
+od_race8 = pd.read_csv('od_race_8.csv')
+od_race9 = pd.read_csv('od_race_9.csv')
+od_race10 = pd.read_csv('od_race_10.csv')
+od_race11 = pd.read_csv('od_race_11.csv')
+od_race12 = pd.read_csv('od_race_12.csv')
+od_race13 = pd.read_csv('od_race_13.csv')
+od_race14 = pd.read_csv('od_race_14.csv')
+od_race15 = pd.read_csv('od_race_15.csv')
+od_race16 = pd.read_csv('od_race_16.csv')
+od_race17 = pd.read_csv('od_race_17.csv')
 
-od_race = load_data('od_race.csv')
-st.text("Let's look at the dataset - count and fractions of people who move between each origin and destination commuting zone pair separately by race")
+od_race = pd.concat([od_race1,od_race2,od_race3,od_race4,od_race5,od_race6,od_race7,od_race8,od_race9,od_race10,od_race10,od_race12,od_race13,od_race14,od_race15,od_race16,od_race17 ],
+ignore_index = True, sort = False)
 
 # 2. show dataframe or not
 if st.checkbox("Show Raw Data"):
