@@ -11,6 +11,8 @@ import altair as alt
 from re import U
 import seaborn as sns
 
+import folium
+from streamlit_folium import st_folium #interface between strealit and folium
 
 
 @st.cache(allow_output_mutation=True)  # add caching so we load the data only once
@@ -36,13 +38,53 @@ st.markdown(
 
 
 ## NEW PROJECT START ##
+
+# Main
 st.title("Reasons for Young Adult Migration")
 
 st.header("Overview")
 
 
-##VIZ 1
+##VIZ 1 - OVERVIEW MAP
 st.subheader('Overview of Young Adult Migration')
+
+#Display overview state migration map
+#library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
+state_lvl_migr = pd.read_csv("data/state_level_migration.csv")
+map = folium.Map(location=[38, -96.5], zoom_start=4, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
+
+choropleth = folium.Choropleth(
+    geo_data='data/us-state-boundaries.geojson',
+    data=state_lvl_migr,
+    columns=(list(state_lvl_migr.columns)),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    highlight=True
+)
+
+for feature in choropleth.geojson.data['features']:
+    state_name = feature['properties']['name']
+    #TODO: Add features from the dataframe to geojson file
+    #feature['properties']['population'] = 'Population: ' + '{:,}'.format(df_indexed.loc[state_name, 'State Pop'][0]) if state_name in list(df_indexed.index) else ''
+    #feature['properties']['per_100k'] = 'Reports/100K Population: ' + str(round(df_indexed.loc[state_name, 'Reports per 100K-F&O together'][0])) if state_name in list(df_indexed.index) else ''
+
+choropleth.geojson.add_child(
+         folium.features.GeoJsonTooltip(['name'], labels=False)
+     )
+
+choropleth.geojson.add_to(map)
+
+st_map = st_folium(map, width=700, height=450) 
+
+state_name = ''
+if st_map['last_active_drawing']:
+    state_name = st_map['last_active_drawing']['properties']['name']
+
+if st.checkbox("Show pivot table"):
+    st.write(state_lvl_migr)
+
+#TODO: Insert Bar Chart of Destinations from selected State
+#st.bar_chart(state_lvl_migr)
 
 st.write(
     """
@@ -52,7 +94,7 @@ st.write(
 
 ##VIZ 2
 st.subheader("Average Migration Rate By State and Race")
-'''
+
 # 1. loading dataset
 # the original od_race file size is too big (>100MB), so divide the big file into several files(<25MB) then load and combine individual dataframe
 od_race1 = pd.read_csv('data/od_race_1.csv')
@@ -144,12 +186,22 @@ st.write(
 )
 
 ##VIZ 4-2
-st.subheader("How does median household income of each CZ affect correlate with migration rate?")
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
-)
+## Economy
+st.header("Economy")
+st.subheader("How do median household incomes of each state affect migration?")
+
+df_income = median_income_process.get_income_df()
+scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
+    x='mean',
+    y='outbound_migration',
+    tooltip=['state_name','mean','outbound_migration']
+).interactive()
+
+scatter_income.title = 'Outbound Migration Number and Average Median Household Income by State'
+st.write(scatter_income)
+
+st.write("Correlation Analysis")
+st.write("[some table / text describing the correlation]")
 
 ##VIZ 4-3
 st.subheader("How does education rate of each CZ affect young people choice of migration destination?")
@@ -166,7 +218,7 @@ st.write(
     [VIZ TO BE INSERTED]
     """
 )
-'''
+
 #NAVIGATION SIDEBAR
 with st.sidebar:
     st.markdown('# Navigation')
@@ -183,127 +235,111 @@ with st.sidebar:
 
 ###############################
 ## TEMPLATE EXAMPLE ##
-TABLE_PAGE_LEN = 10
+# TABLE_PAGE_LEN = 10
 
-state_coordinates = data_munging.get_coordinates()
-state_migration = pd.read_csv("data/state_migration.csv")
-state_summary = pd.read_csv("data/state_migration_summary.csv")
+# state_coordinates = data_munging.get_coordinates()
+# state_migration = pd.read_csv("data/state_migration.csv")
+# state_summary = pd.read_csv("data/state_migration_summary.csv")
 
-st.title("State Movement")
-state_choices = list(state_coordinates["name"])
-state_choices.insert(0, ALL_STATES_TITLE)
-
-
-with st.sidebar.form(key="my_form"):
-    selectbox_state = st.selectbox("Choose a state", state_choices)
-    selectbox_direction = st.selectbox("Choose a direction", ["Incoming", "Outgoing"])
-    numberinput_threshold = st.number_input(
-        """Set top N Migration per state""",
-        value=3,
-        min_value=1,
-        max_value=25,
-        step=1,
-        format="%i",
-    )
-
-    st.markdown(
-        '<p class="small-font">Results Limited to top 5 per State in overall US</p>',
-        unsafe_allow_html=True,
-    )
-    pressed = st.form_submit_button("Build Migration Map")
-
-expander = st.sidebar.expander("What is this?")
-expander.write(
-    """
-This app allows users to view migration between states from 2018-2019.
-Overall US plots all states with substantial migration-based relationships with other states.
-Any other option plots only migration from or to a given state. This map will be updated
-to show migration between 2019 and 2020 once new census data comes out.
-
-Incoming: Shows for a given state, the percent of their **total inbound migration from** another state.
-
-Outgoing: Shows for a given state, the percent of their **total outbound migration to** another state.
-"""
-)
-
-# mig1 = plot_migration.build_migration_chart(G)
-# mig_plot = st.plotly_chart(mig1)
-
-network_place, _, descriptor = st.columns([6, 1, 3])
-
-network_loc = network_place.empty()
+# st.title("State Movement")
+# state_choices = list(state_coordinates["name"])
+# state_choices.insert(0, ALL_STATES_TITLE)
 
 
-# Create starting graph
+# with st.sidebar.form(key="my_form"):
+#     selectbox_state = st.selectbox("Choose a state", state_choices)
+#     selectbox_direction = st.selectbox("Choose a direction", ["Incoming", "Outgoing"])
+#     numberinput_threshold = st.number_input(
+#         """Set top N Migration per state""",
+#         value=3,
+#         min_value=1,
+#         max_value=25,
+#         step=1,
+#         format="%i",
+#     )
 
-descriptor.subheader(data_munging.display_state(selectbox_state))
-descriptor.write(data_munging.display_state_summary(selectbox_state, state_summary))
+#     st.markdown(
+#         '<p class="small-font">Results Limited to top 5 per State in overall US</p>',
+#         unsafe_allow_html=True,
+#     )
+#     pressed = st.form_submit_button("Build Migration Map")
 
+# expander = st.sidebar.expander("What is this?")
+# expander.write(
+#     """
+# This app allows users to view migration between states from 2018-2019.
+# Overall US plots all states with substantial migration-based relationships with other states.
+# Any other option plots only migration from or to a given state. This map will be updated
+# to show migration between 2019 and 2020 once new census data comes out.
 
-edges = data_munging.compute_edges(
-    state_migration,
-    threshold=numberinput_threshold,
-    state=ALL_STATES_TITLE,
-    direction=selectbox_direction,
-)
+# Incoming: Shows for a given state, the percent of their **total inbound migration from** another state.
 
+# Outgoing: Shows for a given state, the percent of their **total outbound migration to** another state.
+# """
+# )
 
-nodes = data_munging.compute_nodes(
-    state_coordinates, edges, direction=selectbox_direction
-)
-G = data_munging.build_network(nodes, edges)
-logger.info("Graph Created, doing app stuff")
+# # mig1 = plot_migration.build_migration_chart(G)
+# # mig_plot = st.plotly_chart(mig1)
 
-migration_plot = plot_migration.build_migration_chart(G, selectbox_direction)
-network_loc.plotly_chart(migration_plot)
+# network_place, _, descriptor = st.columns([6, 1, 3])
 
-st.write(
-    """
-    Hope you like the map!
-    """
-)
-
-st.header("Migration Table")
-table_loc = st.empty()
-clean_edges = data_munging.table_edges(edges, selectbox_direction)
-table_loc.table(clean_edges.head(20))
-
-if pressed:
-    edges = data_munging.compute_edges(
-        state_migration,
-        threshold=numberinput_threshold,
-        state=selectbox_state,
-        direction=selectbox_direction,
-    )
-
-    nodes = data_munging.compute_nodes(
-        state_coordinates, edges, direction=selectbox_direction
-    )
-    # st.table(nodes[["name", "latitude", "Migration"]].head(10))
-    G = data_munging.build_network(nodes, edges)
-    # st.table(G.edges)
-    migration_plot = plot_migration.build_migration_chart(G, selectbox_direction)
-    network_loc.plotly_chart(migration_plot)
-
-    clean_edges = data_munging.table_edges(edges, selectbox_direction)
-    table_loc.table(clean_edges.head(20))
+# network_loc = network_place.empty()
 
 
+# # Create starting graph
 
-## Economy
-st.header("Economy")
-st.subheader("How do median household incomes of each state affect migration?")
+# descriptor.subheader(data_munging.display_state(selectbox_state))
+# descriptor.write(data_munging.display_state_summary(selectbox_state, state_summary))
 
 
-df_income = median_income_process.get_income_df()
-scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
-    x='mean',
-    y='outbound_migration',
-    tooltip=['state_name','mean','outbound_migration']
-).interactive()
+# edges = data_munging.compute_edges(
+#     state_migration,
+#     threshold=numberinput_threshold,
+#     state=ALL_STATES_TITLE,
+#     direction=selectbox_direction,
+# )
 
-scatter_income.title = 'Outbound Migration Number and Average Median Household Income by State'
-st.write(scatter_income)
 
-st.write("Correlation Analysis")
-st.write("[some table / text describing the correlation]")
+# nodes = data_munging.compute_nodes(
+#     state_coordinates, edges, direction=selectbox_direction
+# )
+# G = data_munging.build_network(nodes, edges)
+# logger.info("Graph Created, doing app stuff")
+
+# migration_plot = plot_migration.build_migration_chart(G, selectbox_direction)
+# network_loc.plotly_chart(migration_plot)
+
+# st.write(
+#     """
+#     Hope you like the map!
+#     """
+# )
+
+# st.header("Migration Table")
+# table_loc = st.empty()
+# clean_edges = data_munging.table_edges(edges, selectbox_direction)
+# table_loc.table(clean_edges.head(20))
+
+# if pressed:
+#     edges = data_munging.compute_edges(
+#         state_migration,
+#         threshold=numberinput_threshold,
+#         state=selectbox_state,
+#         direction=selectbox_direction,
+#     )
+
+#     nodes = data_munging.compute_nodes(
+#         state_coordinates, edges, direction=selectbox_direction
+#     )
+#     # st.table(nodes[["name", "latitude", "Migration"]].head(10))
+#     G = data_munging.build_network(nodes, edges)
+#     # st.table(G.edges)
+#     migration_plot = plot_migration.build_migration_chart(G, selectbox_direction)
+#     network_loc.plotly_chart(migration_plot)
+
+#     clean_edges = data_munging.table_edges(edges, selectbox_direction)
+#     table_loc.table(clean_edges.head(20))
+# ### END OF TEMPLATE
+
+
+
