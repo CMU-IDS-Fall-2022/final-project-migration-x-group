@@ -9,7 +9,6 @@ from logzero import logger
 import streamlit as st
 import altair as alt
 from re import U
-from matplotlib import pyplot as plt
 import seaborn as sns
 
 
