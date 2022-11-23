@@ -26,3 +26,8 @@ Update towards the end of the project.
 - [ ] Update the **Online URL** above to point to your deployed project.
 - [ ] A detailed [project report](Report.md).  Each student should submit the URL that points to this file in their github repo on Canvas.
 - [ ] A 5 minute video demonstration.  Upload the video to this github repo and link to it from your report.
+
+
+### Obstacles
+- If you encounter the error: pip's dependency resolver does not currently take into account all the packages that are installed
+  please using:  !pip install -r requirements.txt --use-deprecated=legacy-resolver 
