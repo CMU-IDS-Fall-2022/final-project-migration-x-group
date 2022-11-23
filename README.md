@@ -29,5 +29,5 @@ Update towards the end of the project.
 
 
 ### Obstacles
-- If you encounter the error: pip's dependency resolver does not currently take into account all the packages that are installed
-  please using:  !pip install -r requirements.txt --use-deprecated=legacy-resolver 
+- If you encounter the error: pip's dependency resolver does not currently take into account all the packages that are installed <br/>
+  please use:  !pip install -r requirements.txt --use-deprecated=legacy-resolver 
