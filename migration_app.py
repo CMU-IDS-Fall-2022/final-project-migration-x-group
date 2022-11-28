@@ -187,21 +187,28 @@ st.write(
 
 ##VIZ 4-2
 ## Economy
-st.header("Economy")
-st.subheader("How do median household incomes of each state affect migration?")
+st.header("Economy - Household Income")
+st.subheader("How do median household incomes affect each state's migration?")
 
-df_income = median_income_process.get_income_df()
+df_income = pd.read_csv("data/state_income_for_viz.csv")
 scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
-    x='mean',
-    y='outbound_migration',
-    tooltip=['state_name','mean','outbound_migration']
+    x='average_household_income_median:Q',
+    y='inbound_migration:Q',
+    tooltip=['state_name','average_household_income_median','inbound_migration']
+).properties(
+    height = 400,
+    width = 600,
 ).interactive()
 
-scatter_income.title = 'Outbound Migration Number and Average Median Household Income by State'
+scatter_income.title = 'Inbound Migration Number and Average Median Household Income Median by State'
 st.write(scatter_income)
 
-st.write("Correlation Analysis")
-st.write("[some table / text describing the correlation]")
+st.write("#### Correlation Analysis")
+correlation = median_income_process.calculateCorrelation(df_income)
+st.write("Pearson correlation coefficient")
+st.write(correlation)
+st.write("Therefore there is no visible correlation between each state's inbound migration and average household income median.")
+
 
 ##VIZ 4-3
 st.subheader("How does education rate of each CZ affect young people choice of migration destination?")
@@ -229,7 +236,7 @@ with st.sidebar:
     st.markdown('## Migration rate by sate')
     st.markdown("## Factors influencing migration rate")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Parental Income")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Economy](#economy)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Economy - Household Income](#economy-household-income)")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Education")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Job Market")
 
