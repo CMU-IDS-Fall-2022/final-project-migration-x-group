@@ -167,12 +167,84 @@ st.write(points + lines)
 st.subheader("Race Black has the highest average migration rate across U.S.")
 
 ##VIZ 3
-st.subheader("Migration Rate by State")
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
+st.header("Popular Migration Route")
+state_lvl_migr_rate = pd.read_csv("data/state_migration_summary_with_rate.csv")
+# convert data type from object to int 
+state_lvl_migr_rate['inbound_rate'].astype(str).astype(float)
+state_lvl_migr_rate['outbound_rate'].astype(str).astype(float)
+state_lvl_migr_rate['within_state_rate'].astype(str).astype(float)
+
+## outbound migration
+state_out_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['outbound_rate'],ascending = False)
+
+if st.checkbox("Show Top 5 state per Outbound Migration Rate"):
+    st.write(state_out_migr_rate_sorted.head(5))
+
+st.text("Top 1 state with highest outbound migration rate is New Hampshire")
+
+state_migration_pivot = pd.read_csv("data/state_migration_pivot.csv")
+nh = state_migration_pivot\
+             .query("(o_state_name  == 'New Hampshire')")
+
+nh_transposed = nh.T
+
+new_header = nh_transposed.iloc[0] #grab the first row for the header
+nh_transposed = nh_transposed[:] #take the data less the header row
+nh_transposed.columns = new_header #set the header row as the df header
+nh_transposed = nh_transposed.reset_index()
+new_header2 = nh_transposed.iloc[0] #grab the first row for the header
+nh_transposed = nh_transposed[1:] #take the data less the header row
+nh_transposed.columns = new_header2 #set the header row as the df header
+nh_transposed_filter = nh_transposed.query("(o_state_name  != 'New Hampshire')")
+if st.checkbox("Show Data Source"):
+    st.write(nh_transposed)
+
+bar_outbound = alt.Chart(nh_transposed_filter).mark_bar(size=10).encode(
+    x= alt.X('o_state_name:N', sort = '-y', axis = alt.Axis(title = 'destination state') ),
+    y= alt.Y('New Hampshire:Q')
 )
+text = bar_outbound.mark_text(
+    align='left',
+    baseline='middle',
+    dx=3  # Nudges text to right so it doesn't appear on top of the bar
+).encode(
+    text='New Hampshire:Q')
+
+st.write(
+    bar_outbound
+)
+st.write('Massachussetts, Maine and New York are the top 3 states for young adult of New Hampshire migrated to.')
+
+## Inbound Migration
+st.subheader("Top 5 states with highest inbound migration rate :")
+state_in_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['inbound_rate'],ascending = False)
+st.write(state_in_migr_rate_sorted.head(5))
+d_state = state_migration_pivot[['o_state_name','Colorado', 'Nevada']]
+st.write(d_state.head(5))
+
+d_state_filter1 = d_state.query("(o_state_name != 'Colorado')")
+bar_inbound1 = alt.Chart(d_state_filter1).mark_bar(size=10).encode(
+    x= alt.X('o_state_name:N', sort = '-y', axis = alt.Axis(title = 'original state') ),
+    y= alt.Y('Colorado:Q')
+)
+st.write(bar_inbound1)
+
+d_state_filter2 = d_state.query("(o_state_name != 'Nevada')")
+bar_inbound2 = alt.Chart(d_state_filter2).mark_bar(size=10).encode(
+    x= alt.X('o_state_name:N', sort = '-y', axis = alt.Axis(title = 'original state') ),
+    y= alt.Y('Nevada:Q')
+)
+st.write(bar_inbound2)
+
+if st.button('Click ME to see Insights'):
+    st.write("Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of the young adults are from California.\
+             By viewing the two charts above, we can see that Nevada's young adult migration pattern is very skewed, 43 percent are from California; ")
+
+st.subheader("Top 5 state with highest within state migration rate :")
+state_lvl_migr_rate.sort_values(['within_state_rate'],ascending = False, inplace = True)
+st.write(state_lvl_migr_rate.head(5))
+st.subheader("Young adults from California tend to stay at their home state compared to young adults from other states")
+
 
 ##VIZ 4
 st.header("Factors influencing migration rate")
