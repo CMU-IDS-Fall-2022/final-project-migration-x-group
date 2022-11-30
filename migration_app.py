@@ -221,6 +221,9 @@ d_state_filter1 = d_state.query("(o_state_name != 'Colorado')")
 bar_inbound1 = alt.Chart(d_state_filter1).mark_bar(size=10).encode(
     x= alt.X('o_state_name:N', sort = '-y', axis = alt.Axis(title = 'original state') ),
     y= alt.Y('Colorado:Q')
+).configure_mark(
+    opacity = 0.8,
+    color = 'green'
 )
 st.write(bar_inbound1)
 
@@ -243,7 +246,7 @@ if st.button('Click me to see Insights'):
 st.subheader("Top 5 states with highest within_state migration rate are:")
 state_lvl_migr_rate.sort_values(['within_state_rate'],ascending = False, inplace = True)
 st.write(state_lvl_migr_rate.head(5))
-st.subheader("Young adults from California tend to stay at their home state compared to young adults from other states")
+st.markdown("Young adults from California tend to stay at their home state compared to young adults from other states")
 
 ##VIZ 4
 st.header("Factors influencing migration rate")
