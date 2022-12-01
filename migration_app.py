@@ -237,6 +237,7 @@ bar_inbound2 = alt.Chart(d_state_filter2).mark_bar(size=10).encode(
 )
 st.write(bar_inbound2)
 
+st.markdown(':smile:')
 if st.button('Click me to see Insights'):
     st.write("Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of the young adults are from California.\
              By viewing the two charts above, we can see that Nevada's young adult migration pattern is very skewed, 43 percent from California; ")
