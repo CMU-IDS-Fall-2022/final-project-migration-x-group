@@ -168,7 +168,12 @@ st.subheader("Race Black has the highest average migration rate across U.S.")
 
 ##VIZ 3
 st.header("Popular Migration Routes")
-state_lvl_migr_rate = pd.read_csv("data/state_migration_summary_with_rate.csv")
+state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
+state_lvl_migr_rate = state_lvl_migr.copy()
+state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration'] + state_lvl_migr_rate['outbound_migration'] + state_lvl_migr_rate['within_state_migration']
+state_lvl_migr_rate['inbound_rate'] = state_lvl_migr_rate['inbound_migration'] / state_lvl_migr_rate['total']
+state_lvl_migr_rate['outbound_rate'] = state_lvl_migr_rate['outbound_migration'] / state_lvl_migr_rate['total']
+state_lvl_migr_rate['within_state_rate'] = state_lvl_migr_rate['within_state_migration'] / state_lvl_migr_rate['total']
 # convert data type from object to int 
 state_lvl_migr_rate['inbound_rate'].astype(str).astype(float)
 state_lvl_migr_rate['outbound_rate'].astype(str).astype(float)
@@ -223,7 +228,7 @@ bar_inbound1 = alt.Chart(d_state_filter1).mark_bar(size=10).encode(
     y= alt.Y('Colorado:Q')
 ).configure_mark(
     opacity = 0.8,
-    color = 'green'
+    color = 'brown'
 )
 st.write(bar_inbound1)
 
