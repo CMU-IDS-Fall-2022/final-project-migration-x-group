@@ -224,7 +224,7 @@ text = bar_outbound.mark_text(
 st.write(
     bar_outbound
 )
-st.write('Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
+st.subheader('Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
 
 ################################################ Inbound Migration ###################################################
 
