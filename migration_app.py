@@ -164,7 +164,8 @@ lines = rate_by_state_race.mark_line().encode(
     size=alt.condition(~highlight, alt.value(1), alt.value(3))
 )
 st.write(points + lines)
-st.subheader("Race Black has the highest average migration rate across U.S.")
+with st.beta_expander('\U+1F609 Insights'):
+    st.subheader("Race Black has the highest average migration rate across U.S.")
 
 ##VIZ 3
 st.header("Popular Migration Routes")
