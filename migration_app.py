@@ -334,12 +334,101 @@ st.write(
 )
 
 ##VIZ 4-4
-st.subheader("How does employment rate of each CZ affect migration?")
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
+################################################### Job Market and Migration Rate ###########################################
+st.header("Explore the Correlation Between Migration Rate with Employment Rate in All States in the United States")
+st.write("As we all know, good job market is a great incentive for people to migrate from one place to another. \
+          In this section, we intend to explore the correlation between the employment rate and migrate in rates in all US states. \
+          We will first try to map employment rate and migrate in rate in the granularity of states side by side to explore this correlation.")
+
+df = pd.read_csv('data/employment_migration.csv')
+df.rename(columns={df.columns[0]:'index'}, inplace=True)
+df.rename(columns={df.columns[4]:'inbound_rate'}, inplace=True)
+df = df.round({'employment_rate': 2})
+df = df.round({'inbound_rate': 2})
+dropp = df[df.state == 'Puerto Rico'].index
+df = df.drop(dropp)
+df1 = df
+if st.checkbox("Show Employment and Migration Data"):
+    st.write(df)
+
+employment_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+migration_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+
+choropleth = folium.Choropleth(
+    geo_data='us-state-boundaries.geojson',
+    data=df,
+    columns=('state', 'employment_rate'),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    highlight=True,
 )
+
+choropleth1 = folium.Choropleth(
+    geo_data='us-state-boundaries.geojson',
+    data=df,
+    columns=('state', 'inbound_rate'),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    highlight=True,
+)
+choropleth.geojson.add_to(employment_map)
+choropleth1.geojson.add_to(migration_map)
+
+df = df.set_index('state')
+for feature in choropleth.geojson.data['features']:
+    state_name = feature['properties']['name']
+    feature['properties']['employment'] = 'employment rate: ' + str(df.loc[state_name, 'employment_rate'] 
+                                                                    if state_name in list(df.index) else 'N/A')
+      
+for feature in choropleth1.geojson.data['features']:
+    state_name = feature['properties']['name']
+    feature['properties']['migration'] = 'inbound rate: ' + str(df.loc[state_name, 'inbound_rate'] 
+                                                                    if state_name in list(df.index) else 'N/A')
+
+choropleth.geojson.add_child(
+    folium.features.GeoJsonTooltip(['name','employment'], labels=False)
+)
+
+choropleth1.geojson.add_child(
+    folium.features.GeoJsonTooltip(['name','migration'], labels=False)
+)
+
+cols = st.columns(2)
+with cols[0]:
+    st.write("#### Average Employment Rates from 2010-2021 for all States in the United States")
+    left = st_folium(employment_map, width=420, height=300)
+with cols[1]:
+    st.write("#### Average Inbound Rates from 2010-2021 for all States in the United States")
+    right = st_folium(migration_map, width=420, height=300)
+
+st.write("From the two maps shown above, we can see that there are some correlation between employment rate and migrate in rate. In the central north areas,\
+           high employment rate coexists with high migration in rate, especially in states of Wyoming, North Dakota and Corolado. The same correlation also \
+           shows up in Northeast and Southeast coast of US. To further explore the correlation, we try to plot 52 states' employment rate and migration in rate in the same chart. \
+           We also drop two outliers of Delaware and Puerto Rico to increase the accuracy of the correlation coeffient. ")
+
+#Drop outliner of Delaware and Puerto Rico
+drop1 = df1[df1.state == 'Delaware'].index
+drop2 = df1[df1.state == 'Puerto Rico'].index
+df1 = df1.drop(drop1)
+df1 = df1.drop(drop2)
+
+bar_chart =  alt.Chart(df1).mark_point().encode(
+                                x = "employment_rate",
+                                y = "inbound_rate",
+                                tooltip=['state', 'employment_rate', 'inbound_rate']
+                                ).properties(
+                                    width=860, height=400,
+                                )
+
+st.subheader("Correlation Between Employment Rate and Inbound Rate in All States")
+st.write(bar_chart)
+st.write("#### Correlation Analysis")
+correlation = df1['employment_rate'].corr(df1['inbound_rate'])
+c = str(round(correlation, 2))
+st.write("Pearson correlation coefficient bewteen employment rate and inbound rate is:")
+st.write(c)
+st.write("From the plot chart above, we can see the correlation coefficient is 0.19, so there is a week positive correlation between migration in rate and the Employment rate. From this week correlation, \
+         we can extrapolate that there might be other factors influence people's decision to migrate one state to another. That is to say employement rate is not the only and determing factor.")
 
 #NAVIGATION SIDEBAR
 with st.sidebar:
