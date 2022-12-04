@@ -40,6 +40,7 @@ six==1.16.0
 smmap==5.0.0
 seaborn
 streamlit==1.15.0
+folium
 streamlit_folium
 tenacity==8.1.0
 toml==0.10.2
@@ -51,3 +52,4 @@ tzlocal==4.2
 urllib3==1.26.12
 validators==0.20.0
 zipp==3.10.0
+
