@@ -45,8 +45,12 @@ st.markdown(
 st.title("Reasons for Young Adult Migration")
 
 # Main
-## Viz 1
+## Viz 1-1
+
 st.markdown("## Overview of Young Adult Migration")
+
+overview.show_inbound_vs_outbound_maps()
+## Viz 1-2
 overview.show_state_by_state_migration()
 
 ##VIZ 2

@@ -1,5 +1,3 @@
-import data_munging
-import median_income_process
 from data_munging import ALL_STATES_TITLE
 import pandas as pd
 import numpy as np
@@ -105,3 +103,58 @@ def show_state_by_state_migration():
 
     #TODO: Insert Bar Chart of Destinations from selected State
     #st.bar_chart(state_lvl_migr)
+
+def show_inbound_map():
+
+    state_lvl_migr_df = pd.read_csv("data/state_migration_summary.csv")
+    #Specify overview map 
+    #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
+    map = folium.Map(location=[38, -96.5], zoom_start=4, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
+    
+    choropleth = folium.Choropleth(
+        geo_data='data/us-state-boundaries.geojson',
+        data=state_lvl_migr_df,
+        columns=("state", "inbound_migration_rate"),
+        key_on='feature.properties.name',
+        line_opacity=0.8,
+        highlight=True
+    )
+    choropleth.geojson.add_to(map)
+
+    #Set destination state as index
+    state_lvl_migr_df = state_lvl_migr_df.set_index('state')
+    #Add needed data to geojson
+    for feature in choropleth.geojson.data['features']:
+        state_name = feature['properties']['name']
+        feature['properties']['inbound_migration_rate'] = 'nbound_migration_rate: ' + str(state_lvl_migr_df.loc[state_name, 'inbound_migration_rate'] 
+                                if state_name in list(state_lvl_migr_df.index) else 'N/A')
+        #TODO: Add features from the dataframe to geojson file
+        #feature['properties']['population'] = 'Population: ' + '{:,}'.format(df_indexed.loc[state_name, 'State Pop'][0]) if state_name in list(df_indexed.index) else ''
+        #feature['properties']['per_100k'] = 'Reports/100K Population: ' + str(round(df_indexed.loc[state_name, 'Reports per 100K-F&O together'][0])) if state_name in list(df_indexed.index) else ''
+
+    choropleth.geojson.add_child(
+        folium.features.GeoJsonTooltip(['name','inbound_migration_rate'], labels=False),
+    )
+    st_map = st_folium(map, width=720, height=450) 
+
+    
+
+def show_inbound_vs_outbound_maps():
+    st.write(
+        """
+        The purpose of this section is to which states have had the highest inflow and outflow of young adults.
+        """
+    )
+    state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
+
+    if st.checkbox("Show Raw Outbound and Inbound Data"):
+        st.write(state_lvl_migr)
+
+    cols = st.columns(2)
+    with cols[0]:
+        st.markdown("#### States outbound migration rate")
+        
+    with cols[1]:
+        st.markdown("#### States inbound migration") 
+        show_inbound_map()   
+
