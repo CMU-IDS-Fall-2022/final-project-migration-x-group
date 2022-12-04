@@ -14,6 +14,9 @@ import seaborn as sns
 import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
+#import team files
+import overview
+
 
 @st.cache(allow_output_mutation=True)  # add caching so we load the data only once
 def load_data(file_path):
@@ -38,59 +41,12 @@ st.markdown(
 
 
 ## NEW PROJECT START ##
-
-# Main
 st.title("Reasons for Young Adult Migration")
 
-st.header("Overview")
-
-
-##VIZ 1 - OVERVIEW MAP
-st.subheader('Overview of Young Adult Migration')
-
-#Display overview state migration map
-#library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
-state_lvl_migr = pd.read_csv("data/state_level_migration.csv")
-map = folium.Map(location=[38, -96.5], zoom_start=4, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
-
-choropleth = folium.Choropleth(
-    geo_data='data/us-state-boundaries.geojson',
-    data=state_lvl_migr,
-    columns=(list(state_lvl_migr.columns)),
-    key_on='feature.properties.name',
-    line_opacity=0.8,
-    highlight=True
-)
-
-for feature in choropleth.geojson.data['features']:
-    state_name = feature['properties']['name']
-    #TODO: Add features from the dataframe to geojson file
-    #feature['properties']['population'] = 'Population: ' + '{:,}'.format(df_indexed.loc[state_name, 'State Pop'][0]) if state_name in list(df_indexed.index) else ''
-    #feature['properties']['per_100k'] = 'Reports/100K Population: ' + str(round(df_indexed.loc[state_name, 'Reports per 100K-F&O together'][0])) if state_name in list(df_indexed.index) else ''
-
-choropleth.geojson.add_child(
-         folium.features.GeoJsonTooltip(['name'], labels=False)
-     )
-
-choropleth.geojson.add_to(map)
-
-st_map = st_folium(map, width=700, height=450) 
-
-state_name = ''
-if st_map['last_active_drawing']:
-    state_name = st_map['last_active_drawing']['properties']['name']
-
-if st.checkbox("Show pivot table"):
-    st.write(state_lvl_migr)
-
-#TODO: Insert Bar Chart of Destinations from selected State
-#st.bar_chart(state_lvl_migr)
-
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
-)
+# Main
+## Viz 1
+st.markdown("## Overview of Young Adult Migration")
+overview.show_state_by_state_migration()
 
 ##VIZ 2
 st.subheader("Average Migration Rate By State and Race")
