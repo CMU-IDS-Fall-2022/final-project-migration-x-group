@@ -259,39 +259,84 @@ st.subheader("\U0001F348 Young adults from California tend to stay at their home
 st.header("Factors influencing migration rate")
 
 ##VIZ 4-1
-st.subheader("How does parental income affect migration rate?")
-st.write(
-    """
-    [VIZ TO BE INSERTED]
-    """
-)
-
-##VIZ 4-2
 ## Economy
-st.header("Economy - Household Income")
-st.subheader("How do median household incomes affect each state's migration?")
+st.header("Household Income")
+st.subheader("How do median household incomes affect each state's inbound migration rate?")
+st.write("The economic level of an area has a great influence on people's motivation to migrate in. Therefore, we choose the household income as a major aconomic metrics and expore its relationship with the inbound migration rate.")
 
 df_income = pd.read_csv("data/state_income_for_viz.csv")
-scatter_income = alt.Chart(df_income).mark_circle(size=50).encode(
+
+employment_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+migration_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+
+choropleth = folium.Choropleth(
+    geo_data='us-state-boundaries.geojson',
+    data=df_income,
+    columns=('state_name', 'average_household_income_median'),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    highlight=True,
+)
+
+choropleth1 = folium.Choropleth(
+    geo_data='us-state-boundaries.geojson',
+    data=df_income,
+    columns=('state_name', 'inbound_migration_rate'),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    highlight=True,
+)
+choropleth.geojson.add_to(employment_map)
+choropleth1.geojson.add_to(migration_map)
+
+df_income = df_income.set_index('state_name')
+for feature in choropleth.geojson.data['features']:
+    state_name = feature['properties']['name']
+    feature['properties']['employment'] = 'employment rate: ' + str(df_income.loc[state_name, 'average_household_income_median'] 
+                                                                    if state_name in list(df_income.index) else 'N/A')
+      
+for feature in choropleth1.geojson.data['features']:
+    state_name = feature['properties']['name']
+    feature['properties']['migration'] = 'inbound rate: ' + str(df_income.loc[state_name, 'inbound_migration_rate'] 
+                                                                    if state_name in list(df_income.index) else 'N/A')
+
+choropleth.geojson.add_child(
+    folium.features.GeoJsonTooltip(['name','employment'], labels=False)
+)
+
+choropleth1.geojson.add_child(
+    folium.features.GeoJsonTooltip(['name','migration'], labels=False)
+)
+
+cols = st.columns(2)
+with cols[0]:
+    st.write("#### Average Household Income for all States in the United States")
+    left = st_folium(employment_map, width=420, height=300)
+with cols[1]:
+    st.write("#### Inbound Migration Rates for all States in the United States")
+    right = st_folium(migration_map, width=420, height=300)
+
+df_income_new = pd.read_csv("data/state_income_for_viz.csv")
+
+scatter_income = alt.Chart(df_income_new).mark_circle(size=50).encode(
     x='average_household_income_median:Q',
-    y='inbound_migration:Q',
-    tooltip=['state_name','average_household_income_median','inbound_migration']
+    y='inbound_migration_rate:Q',
+    tooltip=['state_name','average_household_income_median','inbound_migration_rate']
 ).properties(
     height = 400,
     width = 600,
 ).interactive()
 
-scatter_income.title = 'Inbound Migration Number and Average Median Household Income Median by State'
+scatter_income.title = 'Inbound Migration Rate and Average Median Household Income Median by State'
 st.write(scatter_income)
 
 st.write("#### Correlation Analysis")
-correlation = median_income_process.calculateCorrelation(df_income)
+correlation = median_income_process.calculateCorrelation(df_income_new)
 st.write("Pearson correlation coefficient")
 st.write(correlation)
-st.write("Therefore there is no visible correlation between each state's inbound migration and average household income median.")
+st.write("Therefore there is no visible correlation between each state's inbound migration rate and average household income median.")
 
-
-##VIZ 4-3
+##VIZ 4-2
 ## Education
 st.header("Education - Explore the Correlation Between Inbound Migration Rate with Educational Ratio in All States in the United States")
 st.write("Young people have a strong motivation to move from one area to another if the education is of high quality. \
@@ -384,7 +429,7 @@ st.write("Therefore, there is no visible correlation between each state's inboun
 
 
 
-##VIZ 4-4
+##VIZ 4-3
 ################################################### Job Market and Migration Rate ###########################################
 st.header("Explore the Correlation Between Migration Rate with Employment Rate in All States in the United States")
 st.write("As we all know, good job market is a great incentive for people to migrate from one place to another. \
@@ -484,13 +529,11 @@ st.write("From the plot chart above, we can see the correlation coefficient is 0
 with st.sidebar:
     st.markdown('# Navigation')
     st.markdown('## Overview')
-    #st.markdown("[Overview](#overview)") #create an anchor link to the header overview
     st.markdown('## Average miles of migration')
     st.markdown('## Most/least popular destinations')
     st.markdown('## Migration rate by sate')
     st.markdown("## Factors influencing migration rate")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Parental Income")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Economy - Household Income](#economy-household-income)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Household Income](#household-income)")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Education")
     st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Job Market")
 
