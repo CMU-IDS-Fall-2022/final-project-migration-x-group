@@ -48,6 +48,18 @@ st.title("Reasons for Young Adult Migration")
 ## Viz 1-1
 
 st.markdown("## Overview of Young Adult Migration")
+st.write("###### Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
+Therefore, we propose an interactive data science application that will allow stakeholders in economic development to interpret migration patterns of young adults from their state.")
+
+st.write("###### Do you ever wonder how far people migrate between childhood and young adulthood? Where do they go? How much does one's location during childhood determine the labor markets that \
+one is exposed to in young adulthood?We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. \
+Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, \
+schooling or job market?")
+
+st.write("###### The dataset we are using for doing the analysis is the The Migration Pattern of Young Adults.")
+if st.checkbox("The Migration Pattern of Young Adults Dataset"):
+    main_dataset = pd.read_csv('data/state_level_migration.csv')
+    st.write(main_dataset)
 
 overview.show_inbound_vs_outbound_maps()
 ## Viz 1-2
