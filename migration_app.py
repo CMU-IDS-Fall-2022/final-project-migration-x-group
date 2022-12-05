@@ -125,10 +125,10 @@ lines = rate_by_state_race.mark_line().encode(
     size=alt.condition(~highlight, alt.value(1), alt.value(3))
 )
 st.write(points + lines)
-with st.expander('\U0001F348 Insights'):
-    st.subheader("Race Black reached its peak in Hawaii; Asian reached its peak in Kansas and Hispanic reached its peak in Vermont. ")
-
-##VIZ 3
+st.subheader("\U0001F348 Race Black reached its peak in Hawaii; race Asian reached its peak in Kansas and race Hispanic reached its peak in Vermont.From website https://files.hawaii.gov/dbedt/census/Census_2010/SF1/Hawaii_Population_Facts_6-2011.pdf, it also shows that from 2000 to 2010, Black or African American population drowed 2.6%.")
+st.text("The sample includes all children who are born in the U.S. between 1984-92, and tracked individual's migration activity from age 16 to age 26. \n" 
+        "For these participants, age 16 corresponds to the year from 2000 to 2008.")
+##VIZ 3 
 st.header("Popular Migration Routes")
 state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
 state_lvl_migr_rate = state_lvl_migr.copy()
@@ -142,6 +142,7 @@ state_lvl_migr_rate['outbound_rate'].astype(str).astype(float)
 state_lvl_migr_rate['within_state_rate'].astype(str).astype(float)
 
 ################################################ Outbound Migration ###################################################
+st.header("Outbound Migration Pattern Analysis")
 state_out_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['outbound_rate'],ascending = False)
 state_out_migr_rate_sorted = state_out_migr_rate_sorted[['state', 'outbound_migration', 'outbound_rate']]
 most = state_out_migr_rate_sorted.head(5)
@@ -159,7 +160,7 @@ with cols[1]:
     st.text("Top 5 least popular states per Outbound Migration Rate")
 
 st.subheader("Top 1 state with highest outbound migration rate is New Hampshire")
-st.subheader('Let Us Discover popular routes for New Hampshire')
+st.subheader('Let Us Discover Popular Routes for New Hampshire')
 state_migration_pivot = pd.read_csv("data/state_migration_pivot.csv")
 nh = state_migration_pivot\
              .query("(o_state_name  == 'New Hampshire')")
@@ -185,10 +186,10 @@ text = bar_outbound.mark_text(
 st.write(
     bar_outbound
 )
-st.subheader('Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
+st.subheader('\U0001F348 Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
 
 ################################################ Inbound Migration ###################################################
-
+st.header("Inbound Migration Pattern Analysis")
 state_in_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['inbound_rate'],ascending = False)
 state_in_migr_rate_sorted = state_in_migr_rate_sorted[['state', 'inbound_migration', 'inbound_rate']]
 most = state_in_migr_rate_sorted.head(5)
@@ -228,11 +229,13 @@ bar_inbound2 = alt.Chart(d_state_filter2).mark_bar(size=10).encode(
 )
 st.write(bar_inbound2)
 
-with st.expander('\U0001F348 Click Me for Insights'):
-    st.write("Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of the young adults are from California.\
-             By viewing the two charts above, we can see that Nevada's young adult migration pattern is very skewed, 43 percent from California; ")
+#with st.expander('\U0001F348 Click Me for Insights'):
+st.subheader("\U0001F348 Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of them are from California.\
+             By viewing the two charts above, we can see that Nevada's young adults migration pattern is very skewed, 43 percent coming from California. \
+             In addition, Texas ranks #2 for both Colorado and Nevada but more young adults from Texas migrated to Colorado than Nevada.")
 
 ################################################ within state rate ###################################################
+st.header("Within State Migration Pattern Analysis")
 state_lvl_migr_rate.sort_values(['within_state_rate'],ascending = False, inplace = True)
 state_with_migr_rate_sorted = state_lvl_migr_rate[['state', 'within_state_migration', 'within_state_rate']]
 most = state_with_migr_rate_sorted.head(5)
@@ -248,7 +251,9 @@ with cols[1]:
     st.write(least,use_column_width=True)
     st.text("Top 5 least popular states per within_state migration rate are")
 
-st.subheader("Young adults from California tend to stay at their home state compared to young adults from other states")
+st.subheader("\U0001F348 Young adults from California tend to stay at their home state compared to young adults from other states; \
+              whereas young adults from Wyoming tend to move out.")
+
 
 ##VIZ 4
 st.header("Factors influencing migration rate")
