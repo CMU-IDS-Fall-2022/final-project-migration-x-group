@@ -199,7 +199,33 @@ st.write(
     bar_outbound
 )
 st.subheader('\U0001F348 Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
+df_education_2008 = pd.read_csv("data/2008 Grading Summary.csv")
+df_migration = pd.read_csv("data/state_migration_summary.csv")
 
+education_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+choropleth_grade = folium.Choropleth(
+    geo_data='data/us-state-boundaries.geojson',
+    data=df_education_2008,
+    columns=('state', 'score'),
+    key_on='feature.properties.name',
+    line_opacity=0.8,
+    fill_color='YlGnBu',
+    highlight=True,
+)
+choropleth_grade.geojson.add_to(education_map)
+
+df_education=df_education_2008.set_index('state')
+
+for feature in choropleth_grade.geojson.data['features']:
+    state_name = feature['properties']['name']
+    feature['properties']['education'] = 'education score: ' + str(df_education.loc[state_name, 'score'] 
+                                                                    if state_name in list(df_education.index) else 'N/A')
+choropleth_grade.geojson.add_child(
+    folium.features.GeoJsonTooltip(['name','education'], labels=False)
+)
+
+st.write("#### Educational Score in 2018 for all States in the United States")
+left = st_folium(education_map, width=420, height=300)
 ################################################ Inbound Migration ###################################################
 st.header("Inbound Migration Pattern Analysis")
 state_in_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['inbound_rate'],ascending = False)
