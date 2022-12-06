@@ -61,8 +61,11 @@ if st.checkbox("The Migration Pattern of Young Adults Dataset"):
     main_dataset = pd.read_csv('data/state_level_migration.csv')
     st.write(main_dataset)
 
+## Viz 1-1
+st.markdown("## Inbound vs Outbound")
 overview.show_inbound_vs_outbound_maps()
 ## Viz 1-2
+st.markdown("## State by State Migration Cases")
 overview.show_state_by_state_migration()
 
 ##VIZ 2

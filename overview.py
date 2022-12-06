@@ -13,7 +13,7 @@ import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
 def show_state_by_state_migration():
-    st.markdown("### State by State Cases")
+    
 
     ######### VIZ 1 - OVERVIEW MAP #########
 
@@ -106,15 +106,15 @@ def show_state_by_state_migration():
 
 def show_inbound_map():
 
-    state_lvl_migr_df = pd.read_csv("data/state_migration_summary.csv")
+    state_lvl_migr_df = pd.read_csv("data/state_migration_summary_with_rate.csv")
     #Specify overview map 
     #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
-    map = folium.Map(location=[38, -96.5], zoom_start=4, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
+    map = folium.Map(location=[38, -96.5], zoom_start=3, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
     
     choropleth = folium.Choropleth(
         geo_data='data/us-state-boundaries.geojson',
         data=state_lvl_migr_df,
-        columns=("state", "inbound_migration_rate"),
+        columns=("state", "inbound_rate"),
         key_on='feature.properties.name',
         line_opacity=0.8,
         highlight=True
@@ -126,26 +126,62 @@ def show_inbound_map():
     #Add needed data to geojson
     for feature in choropleth.geojson.data['features']:
         state_name = feature['properties']['name']
-        feature['properties']['inbound_migration_rate'] = 'nbound_migration_rate: ' + str(state_lvl_migr_df.loc[state_name, 'inbound_migration_rate'] 
+        feature['properties']['inbound_rate'] = 'inbound_rate: ' + str(state_lvl_migr_df.loc[state_name, 'inbound_rate'] 
                                 if state_name in list(state_lvl_migr_df.index) else 'N/A')
         #TODO: Add features from the dataframe to geojson file
         #feature['properties']['population'] = 'Population: ' + '{:,}'.format(df_indexed.loc[state_name, 'State Pop'][0]) if state_name in list(df_indexed.index) else ''
         #feature['properties']['per_100k'] = 'Reports/100K Population: ' + str(round(df_indexed.loc[state_name, 'Reports per 100K-F&O together'][0])) if state_name in list(df_indexed.index) else ''
 
     choropleth.geojson.add_child(
-        folium.features.GeoJsonTooltip(['name','inbound_migration_rate'], labels=False),
+        folium.features.GeoJsonTooltip(['name','inbound_rate'], labels=False),
     )
     st_map = st_folium(map, width=720, height=450) 
 
+
+def show_outbound_map():
+
+    state_lvl_migr_df = pd.read_csv("data/state_migration_summary_with_rate.csv")
+    #Specify overview map 
+    #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
+    map = folium.Map(location=[38, -96.5], zoom_start=3, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
     
+    choropleth = folium.Choropleth(
+        geo_data='data/us-state-boundaries.geojson',
+        data=state_lvl_migr_df,
+        columns=("state", "outbound_rate"),
+        key_on='feature.properties.name',
+        line_opacity=0.8,
+        highlight=True
+    )
+    choropleth.geojson.add_to(map)
+
+    #Set destination state as index
+    state_lvl_migr_df = state_lvl_migr_df.set_index('state')
+    #Add needed data to geojson
+    for feature in choropleth.geojson.data['features']:
+        state_name = feature['properties']['name']
+        feature['properties']['outbound_rate'] = 'outbound_rate: ' + str(state_lvl_migr_df.loc[state_name, 'outbound_rate'] 
+                                if state_name in list(state_lvl_migr_df.index) else 'N/A')
+        #TODO: Add features from the dataframe to geojson file
+        #feature['properties']['population'] = 'Population: ' + '{:,}'.format(df_indexed.loc[state_name, 'State Pop'][0]) if state_name in list(df_indexed.index) else ''
+        #feature['properties']['per_100k'] = 'Reports/100K Population: ' + str(round(df_indexed.loc[state_name, 'Reports per 100K-F&O together'][0])) if state_name in list(df_indexed.index) else ''
+
+    choropleth.geojson.add_child(
+        folium.features.GeoJsonTooltip(['name','outbound_rate'], labels=False),
+    )
+    st_map = st_folium(map, width=720, height=450) 
 
 def show_inbound_vs_outbound_maps():
-    st.write(
+    
+    st.markdown(
         """
         The purpose of this section is to which states have had the highest inflow and outflow of young adults.
+        We calculate the inbound and outbound rates as follows:
+        -  `inbound_rate = (adults_migrated to state) / total of adults from state`
+        -  `outbound_rate = (adults_migrated from state) / total of adults from state`
         """
     )
-    state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
+    state_lvl_migr = pd.read_csv("data/state_migration_summary_with_rate.csv")
 
     if st.checkbox("Show Raw Outbound and Inbound Data"):
         st.write(state_lvl_migr)
@@ -153,8 +189,42 @@ def show_inbound_vs_outbound_maps():
     cols = st.columns(2)
     with cols[0]:
         st.markdown("#### States outbound migration rate")
+        show_outbound_map()
+        st.markdown(
+            """
+            Colarado, Nevada, and DC have the highest rate of *departing* young adults moving *from* the states.  Their young adult populations decreased by larger rates than other states.
+            """
+        )
+        #outbound bar
         
     with cols[1]:
         st.markdown("#### States inbound migration") 
-        show_inbound_map()   
+        show_inbound_map()
 
+        st.markdown(
+            """
+            New Hampshire, Vermont, and Wyoming have the highest rate of *incoming* young adults moving *into* the states. Their young adult populations increased by larger rates than other states.
+            """
+        )   
+    
+    # Bar charts showing inpund and outbound
+
+    outbound_bar = alt.Chart(state_lvl_migr.reset_index()).mark_bar().encode(
+    alt.Y("outbound_rate", type="quantitative", title="outbound rate"),
+    alt.X(field='state', type='nominal', sort='-y'),
+    ).properties(
+        title="Outbound rate of states"
+    )
+    st.write(outbound_bar)
+
+    inbound_bar = alt.Chart(state_lvl_migr.reset_index()).mark_bar().encode(
+        alt.Y("inbound_rate", type="quantitative", title="inbound rate"),
+        alt.X(field='state', type='nominal', sort='-y'),
+        ).properties(
+            title="Inbound rate of states"
+        )
+    st.write(inbound_bar)
+
+    
+
+    #st.write((state_lvl_migr.nlargest(5, columns="inbound_rate")["state"]))
