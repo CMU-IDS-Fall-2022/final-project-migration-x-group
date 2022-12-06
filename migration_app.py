@@ -225,7 +225,17 @@ choropleth_grade.geojson.add_child(
 )
 
 st.write("#### Educational Score in 2018 for all States in the United States")
-left = st_folium(education_map, width=420, height=300)
+left = st_folium(education_map, width=600, height=400)
+
+# Correlation 
+df_migration = pd.read_csv("data/state_migration_summary.csv")
+df_higher_education = pd.read_csv("data/Higher_Edu_RatioByState.csv")
+
+correlation = df_migration['inbound_migration_rate'].corr(df_higher_education['higher_edu_ratio'])
+c1 = str(round(correlation,3))
+st.subheader('corrleation score:' + c1)
+st.subheader("\U0001F348 There is a positive relationship between higher education ratio and inbound migration rate") 
+
 ################################################ Inbound Migration ###################################################
 st.header("Inbound Migration Pattern Analysis")
 state_in_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['inbound_rate'],ascending = False)
