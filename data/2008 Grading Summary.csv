@@ -1,0 +1,52 @@
+state,grade,score
+New York,B,84.9
+Massachusetts,B,84
+Maryland,B,83.5
+New Jersey,B-,82.4
+Virginia,B-,82.3
+West Virginia,B-,80.8
+Ohio,B-,80.6
+Arkansas,B-,80.5
+South Carolina,B-,80.4
+Pennsylvania,B-,80.3
+Georgia,B-,80.2
+Indiana,B-,79.7
+Vermont,B-,79.5
+Florida,C+,79.2
+Wisconsin,C+,78.3
+Tennessee,C+,78
+Delaware,C+,78
+Michigan,C+,77.8
+Connecticut,C+,77.6
+Maine,C+,77.5
+Louisiana,C,76.5
+Kentucky,C,76.4
+Texas,C,75.9
+North Carolina,C,75.8
+Minnesota,C,75.8
+Alabama,C,75.7
+New Hampshire,C,75.6
+Oklahoma,C,75.5
+Iowa,C,75.3
+New Mexico,C,75.2
+Rhode Island,C,75.2
+Hawaii,C,74.8
+North Dakota,C,74.2
+Washington,C,73.9
+Illinois,C,73.4
+California,C,73.4
+Kansas,C,73.3
+Colorado,C,73.1
+Wyoming,C,72.8
+Missouri,C-,72.1
+South Dakota,C-,71.8
+Arizona,C-,71.6
+Alaska,C-,70.9
+Utah,C-,70.7
+Montana,C-,70.7
+Nevada,D+,69.4
+Nebraska,D+,69.3
+Mississippi,D+,68.9
+Oregon,D+,68.6
+Idaho,D+,68.4
+District of Columbia,D+,68.1

@@ -23,6 +23,6 @@ def get_income_df():
 
 
 def calculateCorrelation(df):
-    df_income_sim = df.drop(df.iloc[:,:22],axis=1)
+    df_income_sim = df.iloc[:,2:]
     corr = df_income_sim.corr()
     return corr
