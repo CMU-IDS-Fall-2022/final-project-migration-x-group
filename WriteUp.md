@@ -3,8 +3,13 @@ Datasets we have used are from:
 - Migration Pattern of young adults https://data.migrationpatterns.org/MigrationPatternsData.zip
 - https://www.edweek.org/policy-politics/grading-the-states/2008/01
 - 
+## Data Transformation
+In order to accurately compare migration status state by state, we decide to use migration rate rather than the total number of migrants. 
 
-
+state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration'] + state_lvl_migr_rate['outbound_migration'] + state_lvl_migr_rate['within_state_migration'] <br />
+state_lvl_migr_rate['inbound_rate'] = state_lvl_migr_rate['inbound_migration'] / state_lvl_migr_rate['total']  <br />
+state_lvl_migr_rate['outbound_rate'] = state_lvl_migr_rate['outbound_migration'] / state_lvl_migr_rate['total']  <br />
+state_lvl_migr_rate['within_state_rate'] = state_lvl_migr_rate['within_state_migration'] / state_lvl_migr_rate['total']  <br />
 
 
 # Discover U.S. Migration Pattern <br />
