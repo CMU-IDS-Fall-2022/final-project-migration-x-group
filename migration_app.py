@@ -48,24 +48,24 @@ st.title("U.S. Young Adult Migration Analysis")
 ## Viz 1-1
 
 st.markdown("## Overview of Young Adult Migration")
-st.write("###### Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
+st.write(" Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
 Therefore, we propose an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state.")
 
-st.write("###### Do you ever wonder how far people migrate between childhood and young adulthood? Where do they go? How much does one's location during childhood determine the labor markets that \
+st.write(" Do you ever wonder how far people migrate between childhood and young adulthood? Where do they go? How much does one's location during childhood determine the labor markets that \
 one is exposed to in young adulthood?We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. \
 Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, \
 schooling or job market?")
 
-st.write("###### The dataset we are using for doing the analysis is the The Migration Pattern of Young Adults.")
+st.write(" The dataset we are using for doing the analysis is the The Migration Pattern of Young Adults.")
 if st.checkbox("The Migration Pattern of Young Adults Dataset"):
     main_dataset = pd.read_csv('data/state_level_migration.csv')
     st.write(main_dataset)
 
 ## Viz 1-1
-st.markdown("## Inbound vs Outbound")
+st.markdown("### Inbound vs Outbound Rates")
 overview.show_inbound_vs_outbound_maps()
 ## Viz 1-2
-st.markdown("## State by State Migration Cases")
+st.markdown("### Migration by State")
 overview.show_state_by_state_migration()
 
 ##VIZ 2
@@ -584,7 +584,6 @@ st.write("From the plot chart above, we can see the correlation coefficient is 0
 with st.sidebar:
     st.markdown('# Navigation')
     st.markdown('## Overview')
-    st.markdown('## [Average miles of migration]()')
     st.markdown('## Most/least popular destinations')
     st.markdown('## Migration rate by sate')
     st.markdown("## Factors influencing migration rate")
