@@ -226,6 +226,7 @@ choropleth_grade.geojson.add_child(
 
 st.write("#### Educational Score in 2018 for all States in the United States")
 left = st_folium(education_map, width=600, height=400)
+st.write("data source: https://www.edweek.org/policy-politics/grading-the-states/2008/01")
 
 # Correlation 
 df_migration = pd.read_csv("data/state_migration_summary.csv")
