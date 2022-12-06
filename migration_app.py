@@ -138,6 +138,7 @@ lines = rate_by_state_race.mark_line().encode(
 )
 st.write(points + lines)
 st.subheader("\U0001F348 Race Black reached its peak in Hawaii; race Asian reached its peak in Kansas and race Hispanic reached its peak in Vermont.From website https://files.hawaii.gov/dbedt/census/Census_2010/SF1/Hawaii_Population_Facts_6-2011.pdf, it also shows that from 2000 to 2010, Black or African American population dropped 2.6%.")
+st.subheader ("On the other side, race Black's lowest point is in Maryland; race Hispanic's lowest point is in Illinois;race Asian's lowest point is in New York")
 st.text("The sample includes all children who are born in the U.S. between 1984-92, and tracked individual's migration activity from age 16 to age 26. \n" 
         "For these participants, age 16 corresponds to the year from 2000 to 2008.")
 ##VIZ 3 
