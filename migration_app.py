@@ -42,7 +42,7 @@ st.markdown(
 
 
 ## NEW PROJECT START ##
-st.title("Reasons for Young Adult Migration")
+st.title("U.S. Young Adult Migration Analysis")
 
 # Main
 ## Viz 1-1
