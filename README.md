@@ -12,6 +12,20 @@ Update towards the end of the project.
 
 ## Deliverables
 
+### Abstract
+Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. Information on migration patterns of young adults can be useful for stakeholders in economic development such as policy makers and employers. Therefore, we created an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state. We found that INSERT SUMMARY OF 1-2 TOP INSIGHTS.
+
+### Summary Image
+INSERT IMAGE
+
+### Video
+INSERT YOUTUBE LINK
+
+### [Application Link](https://cmu-ids-fall-2022-final-project-migration--migration-app-t3gwhn.streamlit.app/)
+
+### Instructions
+Follow the instructions listed in the application.
+
 ### Proposal
 
 - [ ] The URL at the top of this readme needs to point to your application online. It should also list the names of the team members.
