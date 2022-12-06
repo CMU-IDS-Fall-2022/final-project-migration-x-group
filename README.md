@@ -1,4 +1,5 @@
 # CMU Interactive Data Science Final Project
+# Young Adult Migration and Its Social-Economic Impacts
 
 * **Online URL**: [App](https://cmu-ids-fall-2022-final-project-migration--migration-app-t3gwhn.streamlit.app/)
 * **Team members**:
