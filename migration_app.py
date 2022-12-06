@@ -42,14 +42,14 @@ st.markdown(
 
 
 ## NEW PROJECT START ##
-st.title("Reasons for Young Adult Migration")
+st.title("U.S. Young Adult Migration Analysis")
 
 # Main
 ## Viz 1-1
 
 st.markdown("## Overview of Young Adult Migration")
 st.write("###### Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
-Therefore, we propose an interactive data science application that will allow stakeholders in economic development to interpret migration patterns of young adults from their state.")
+Therefore, we propose an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state.")
 
 st.write("###### Do you ever wonder how far people migrate between childhood and young adulthood? Where do they go? How much does one's location during childhood determine the labor markets that \
 one is exposed to in young adulthood?We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. \
@@ -141,6 +141,7 @@ lines = rate_by_state_race.mark_line().encode(
 )
 st.write(points + lines)
 st.subheader("\U0001F348 Race Black reached its peak in Hawaii; race Asian reached its peak in Kansas and race Hispanic reached its peak in Vermont.From website https://files.hawaii.gov/dbedt/census/Census_2010/SF1/Hawaii_Population_Facts_6-2011.pdf, it also shows that from 2000 to 2010, Black or African American population dropped 2.6%.")
+st.subheader (" On the other side, race Black's lowest point is in Maryland; race Hispanic's lowest point is in Illinois; race Asian's lowest point is in New York.")
 st.text("The sample includes all children who are born in the U.S. between 1984-92, and tracked individual's migration activity from age 16 to age 26. \n" 
         "For these participants, age 16 corresponds to the year from 2000 to 2008.")
 ##VIZ 3 
@@ -229,6 +230,8 @@ choropleth_grade.geojson.add_child(
 
 st.write("#### Educational Score in 2018 for all States in the United States")
 left = st_folium(education_map, width=600, height=400)
+right = st.write('Massachussetts and New York have the highest gradings in 2008') 
+st.write("data source: https://www.edweek.org/policy-politics/grading-the-states/2008/01")
 
 # Correlation 
 df_migration = pd.read_csv("data/state_migration_summary.csv")
@@ -237,7 +240,8 @@ df_higher_education = pd.read_csv("data/Higher_Edu_RatioByState.csv")
 correlation = df_migration['inbound_migration_rate'].corr(df_higher_education['higher_edu_ratio'])
 c1 = str(round(correlation,3))
 st.subheader('corrleation score:' + c1)
-st.subheader("\U0001F348 There is a positive relationship between higher education ratio and inbound migration rate") 
+st.subheader("\U0001F348 There is a positive relationship between higher education ratio and inbound migration rate.") 
+
 
 ################################################ Inbound Migration ###################################################
 st.header("Inbound Migration Pattern Analysis")
