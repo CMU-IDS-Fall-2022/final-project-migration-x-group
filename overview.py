@@ -12,6 +12,8 @@ import seaborn as sns
 import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
+@st.cache(allow_output_mutation=True)  # add caching so we load the data only once
+
 def show_state_by_state_migration():
     
 
