@@ -31,4 +31,4 @@ We discovered the migration trends from three dimensions:
    Further analysis: why does Alaska become popular destination during that time? and why dose Michigan not attract young adults? 
    
 ### Within State Migration   <br />
-    Despite California is the No.1 state for most popular destination Colorado, young adults from California tend to stay at their home state compared to young adults from other states; whereas young adults from Wyoming tend to move out.
+Despite California is the No.1 state for the most popular destination Colorado, young adults from California have a higher stay in home state rate compared to young adults from other states; whereas young adults from Wyoming tend to move out.
