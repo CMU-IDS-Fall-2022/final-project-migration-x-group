@@ -6,10 +6,10 @@ Datasets we have used are from:
 ## Data Transformation
 In order to accurately compare migration status state by state, we decide to use migration rate rather than the total number of migrants. 
 
-state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration'] + state_lvl_migr_rate['outbound_migration'] + state_lvl_migr_rate['within_state_migration'] <br />
-state_lvl_migr_rate['inbound_rate'] = state_lvl_migr_rate['inbound_migration'] / state_lvl_migr_rate['total']  <br />
-state_lvl_migr_rate['outbound_rate'] = state_lvl_migr_rate['outbound_migration'] / state_lvl_migr_rate['total']  <br />
-state_lvl_migr_rate['within_state_rate'] = state_lvl_migr_rate['within_state_migration'] / state_lvl_migr_rate['total']  <br />
+- state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration']+state_lvl_migr_rate['outbound_migration']+state_lvl_migr_rate['within_state_migration'] 
+- state_lvl_migr_rate['inbound_rate'] = state_lvl_migr_rate['inbound_migration'] / state_lvl_migr_rate['total']  
+- state_lvl_migr_rate['outbound_rate'] = state_lvl_migr_rate['outbound_migration'] / state_lvl_migr_rate['total']  
+- state_lvl_migr_rate['within_state_rate'] = state_lvl_migr_rate['within_state_migration'] / state_lvl_migr_rate['total']  
 
 
 # Discover U.S. Migration Pattern <br />
