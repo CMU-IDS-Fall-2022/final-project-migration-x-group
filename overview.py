@@ -173,6 +173,7 @@ def show_outbound_map():
 
 def show_inbound_vs_outbound_maps():
     
+    
     st.markdown(
         """
         The purpose of this section is to which states have had the highest inflow and outflow of young adults.
