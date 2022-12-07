@@ -27,7 +27,7 @@ We discovered the migration trends from three dimensions:
   Top 1 states with the lowest outbound migration rate is Califonia, which is located at west coast. 
   - Finding 1. Young adults from east coast tend to move out. 
   - Finding 2. Massachussetts, Maine, New York and California are the top 4 destination states for young adult of New Hampshire migrated to. 
-  - Finding 3. From the popular routes of young adults in New Hampshire, we see that education is one of the factors attracting young adults migrated out.
+  - Finding 3. From the popular routes of young adults in New Hampshire, we see that education is one of the factors attracting young adults migrated out, as New York and Massachussetts are the top 2 states per education score.
   
 ### Inbound Migration  <br />
    Most popular 5 states per inbound migration rates are: Colorado, Nevada, DC, North Dakota and Alaska. And all of them are not located either east or west coast.
