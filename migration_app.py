@@ -418,6 +418,17 @@ st.subheader("Explore the Correlation Between Inbound Migration Rate with Educat
 st.write("Young people have a strong motivation to move from one area to another if the education is of high quality. \
           We will investigate the correlation between educational attainment and the rate of immigration into all US states in this section. \
           To examine the correlation, we will first plot the educational ratio and the inbound migration rate for each state side by side.")
+
+url = "https://data.census.gov/table?q=education+by+county&tid=ACSDT1Y2021.B14001&moe=false&tp=false"
+
+st.write("The educational data comes from the [SCHOOL ENROLLMENT BY LEVEL OF SCHOOL FOR THE POPULATION 3 YEARS AND OVER](%s) on the United States Census Bureau website."%url)
+st.markdown(
+        """
+        We calculate the Educational Ratio as follows:
+        -  `Educational Ratio = Average(educational ratio from 2013 to 2018)`
+        """
+    )
+
 df_education = load_data("data/Educational_Migration.csv")
 df_migration = load_data("data/state_migration_summary.csv")
 
