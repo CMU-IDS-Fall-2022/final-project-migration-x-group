@@ -1,7 +1,7 @@
 # CMU Interactive Data Science Final Project
 # Young Adult Migration and Its Social-Economic Impacts
 
-* **Online URL**: [App](https://cmu-ids-fall-2022-final-project-migration--migration-app-t3gwhn.streamlit.app/)
+* **Online URL**: [App](https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
 * **Team members**:
   * Contact person: </br>
     cuitingl@andrew.cmu.edu, haoyuw2@andrew.cmu.edu, ddbutler@andrew.cmu.edu, xinzhuwa@andrew.cmu.edu, yuesun@andrew.cmu.edu
@@ -21,7 +21,7 @@ INSERT IMAGE
 ### Video
 INSERT YOUTUBE LINK
 
-### [Application Link](https://cmu-ids-fall-2022-final-project-migration--migration-app-t3gwhn.streamlit.app/)
+### [Application Link](https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
 
 ### Instructions
 Follow the instructions listed in the application.
