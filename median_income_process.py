@@ -1,11 +1,18 @@
 import pandas as pd
+import numpy as np
+import streamlit as st
+import altair as alt
+
+@st.cache(allow_output_mutation=True)  # add caching so we load the data only once
+def load_data(file_path):
+    return pd.read_csv(file_path)
 
 def get_income_df():
-    df_sum = pd.read_csv("data/state_migration.csv")
+    df_sum = load_data("data/state_migration.csv")
 
     df_d = df_sum.groupby(['d_state_name']).agg({'n':'sum'})
     df_d = df_d.reset_index()
-    df_income = pd.read_csv("data/state_household_income.csv")
+    df_income = load_data("data/state_household_income.csv")
 
     df_income = df_income.replace({'state_name': {'DC': 'District of Columbia'}})
 
