@@ -44,6 +44,18 @@ st.markdown(
 ## NEW PROJECT START ##
 st.title("U.S. Young Adult Migration Analysis")
 
+#NAVIGATION SIDEBAR
+with st.sidebar:
+    st.markdown('## 1. Overview of Young Adult Migration')
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [1-1 Inbound vs Outbound Rates](#1-1-inbound-vs-outbound-rates)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [1-2 Migration by State](#1-2-migration-by-state)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [1-3 Popular Migration Routes](#1-3-popular-migration-routes)")
+    st.markdown("## 2. Factors influencing migration rate")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [2-1 Household Income](#2-1-household-income)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [2-2 Education](#2-2-education)")
+    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [2-3 Job Market](#2-3-job-market)")
+
+
 # Main
 ## Viz 1-1
 
@@ -66,14 +78,14 @@ if st.checkbox("The Migration Pattern of Young Adults Dataset"):
     st.write(main_dataset)
 
 ## Viz 1-1
-st.markdown("### Inbound vs Outbound Rates")
+st.markdown("### 1-1 Inbound vs Outbound Rates")
 overview.show_inbound_vs_outbound_maps()
 ## Viz 1-2
-st.markdown("### Migration by State")
+st.markdown("### 1-2 Migration by State")
 overview.show_state_by_state_migration()
 
 ##VIZ 2
-st.subheader("Average Migration Rate By State and Race")
+st.subheader("1-2-1 Average Migration Rate By State and Race")
 
 # 1. loading dataset
 # the original od_race file size is too big (>100MB), so divide the big file into several files(<25MB) then load and combine individual dataframe
@@ -144,12 +156,12 @@ lines = rate_by_state_race.mark_line().encode(
     size=alt.condition(~highlight, alt.value(1), alt.value(3))
 )
 st.write(points + lines)
-st.subheader("\U0001F348 Race Black reached its peak in Hawaii; race Asian reached its peak in Kansas and race Hispanic reached its peak in Vermont.From website https://files.hawaii.gov/dbedt/census/Census_2010/SF1/Hawaii_Population_Facts_6-2011.pdf, it also shows that from 2000 to 2010, Black or African American population dropped 2.6%.")
-st.subheader (" On the other side, race Black's lowest point is in Maryland; race Hispanic's lowest point is in Illinois; race Asian's lowest point is in New York.")
+st.markdown("##### \U0001F348 Race Black reached its peak in Hawaii; race Asian reached its peak in Kansas and race Hispanic reached its peak in Vermont.From website https://files.hawaii.gov/dbedt/census/Census_2010/SF1/Hawaii_Population_Facts_6-2011.pdf, it also shows that from 2000 to 2010, Black or African American population dropped 2.6%.")
+st.markdown ("##### On the other side, race Black's lowest point is in Maryland; race Hispanic's lowest point is in Illinois; race Asian's lowest point is in New York.")
 st.text("The sample includes all children who are born in the U.S. between 1984-92, and tracked individual's migration activity from age 16 to age 26. \n" 
         "For these participants, age 16 corresponds to the year from 2000 to 2008.")
 ##VIZ 3 
-st.header("Popular Migration Routes")
+st.markdown("### 1-3 Popular Migration Routes")
 state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
 state_lvl_migr_rate = state_lvl_migr.copy()
 state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration'] + state_lvl_migr_rate['outbound_migration'] + state_lvl_migr_rate['within_state_migration']
@@ -162,7 +174,7 @@ state_lvl_migr_rate['outbound_rate'].astype(str).astype(float)
 state_lvl_migr_rate['within_state_rate'].astype(str).astype(float)
 
 ################################################ Outbound Migration ###################################################
-st.header("Outbound Migration Pattern Analysis")
+st.markdown("#### 1-3-1 Outbound Migration Pattern Analysis")
 state_out_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['outbound_rate'],ascending = False)
 state_out_migr_rate_sorted = state_out_migr_rate_sorted[['state', 'outbound_migration', 'outbound_rate']]
 most = state_out_migr_rate_sorted.head(5)
@@ -179,8 +191,8 @@ with cols[1]:
     st.write(least,use_column_width=True)
     st.text("Top 5 least popular states per Outbound Migration Rate")
 
-st.subheader("Top 1 state with highest outbound migration rate is New Hampshire")
-st.subheader('Let Us Discover Popular Routes for New Hampshire')
+st.markdown("##### Top 1 state with highest outbound migration rate is New Hampshire")
+st.markdown('##### Let Us Discover Popular Routes for New Hampshire')
 state_migration_pivot = pd.read_csv("data/state_migration_pivot.csv")
 nh = state_migration_pivot\
              .query("(o_state_name  == 'New Hampshire')")
@@ -206,7 +218,7 @@ text = bar_outbound.mark_text(
 st.write(
     bar_outbound
 )
-st.subheader('\U0001F348 Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
+st.markdown('##### \U0001F348 Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
 df_education_2008 = pd.read_csv("data/2008 Grading Summary.csv")
 df_migration = pd.read_csv("data/state_migration_summary.csv")
 
@@ -232,7 +244,7 @@ choropleth_grade.geojson.add_child(
     folium.features.GeoJsonTooltip(['name','education'], labels=False)
 )
 
-st.write("#### Educational Score in 2018 for all States in the United States")
+st.write("##### Educational Score in 2018 for all States in the United States")
 left = st_folium(education_map, width=600, height=400)
 right = st.write('Massachussetts and New York have the highest gradings in 2008') 
 st.write("data source: https://www.edweek.org/policy-politics/grading-the-states/2008/01")
@@ -243,12 +255,12 @@ df_higher_education = pd.read_csv("data/Higher_Edu_RatioByState.csv")
 
 correlation = df_migration['inbound_migration_rate'].corr(df_higher_education['higher_edu_ratio'])
 c1 = str(round(correlation,3))
-st.subheader('corrleation score:' + c1)
-st.subheader("\U0001F348 There is a positive relationship between higher education ratio and inbound migration rate.") 
+st.markdown('##### corrleation score:' + c1)
+st.markdown("##### \U0001F348 There is a positive relationship between higher education ratio and inbound migration rate.") 
 
 
 ################################################ Inbound Migration ###################################################
-st.header("Inbound Migration Pattern Analysis")
+st.markdown("#### 1-3-2 Inbound Migration Pattern Analysis")
 state_in_migr_rate_sorted = state_lvl_migr_rate.sort_values(by=['inbound_rate'],ascending = False)
 state_in_migr_rate_sorted = state_in_migr_rate_sorted[['state', 'inbound_migration', 'inbound_rate']]
 most = state_in_migr_rate_sorted.head(5)
@@ -265,7 +277,7 @@ with cols[1]:
     st.write(least,use_column_width=True)
     st.text('Top 5 least popular states per Inbound Migration Rate')
 
-st.subheader('Discover the migration routes for the top 2 popular states')
+st.markdown('##### Discover the migration routes for the top 2 popular states')
 d_state = state_migration_pivot[['o_state_name','Colorado', 'Nevada']]
 st.write(d_state)
 d_state_filter1 = d_state.query("(o_state_name != 'Colorado')")
@@ -289,12 +301,12 @@ bar_inbound2 = alt.Chart(d_state_filter2).mark_bar(size=10).encode(
 st.write(bar_inbound2)
 
 #with st.expander('\U0001F348 Click Me for Insights'):
-st.subheader("\U0001F348 Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of them are from California.\
+st.markdown("##### \U0001F348 Colorado and Nevada are the top 2 popular states for young adults migrated to. And most of them are from California.\
              By viewing the two charts above, we can see that Nevada's young adults migration pattern is very skewed, 43 percent coming from California. \
              In addition, Texas ranks #2 for both Colorado and Nevada but more young adults from Texas migrated to Colorado than Nevada.")
 
 ################################################ within state rate ###################################################
-st.header("Within State Migration Pattern Analysis")
+st.markdown("#### 1-3-3 Within State Migration Pattern Analysis")
 state_lvl_migr_rate.sort_values(['within_state_rate'],ascending = False, inplace = True)
 state_with_migr_rate_sorted = state_lvl_migr_rate[['state', 'within_state_migration', 'within_state_rate']]
 most = state_with_migr_rate_sorted.head(5)
@@ -310,16 +322,16 @@ with cols[1]:
     st.write(least,use_column_width=True)
     st.text("Top 5 least popular states per within_state migration rate are")
 
-st.subheader("\U0001F348 Young adults from California tend to stay at their home state compared to young adults from other states; \
+st.markdown("##### \U0001F348 Young adults from California tend to stay at their home state compared to young adults from other states; \
               whereas young adults from Wyoming tend to move out.")
 
 
 ##VIZ 4
-st.header("Factors influencing migration rate")
+st.header("2. Factors influencing migration rate")
 
 ##VIZ 4-1
 ## Economy
-st.header("Household Income")
+st.header("2-1 Household Income")
 st.subheader("How do median household incomes affect each state's inbound migration rate?")
 st.write("The economic level of an area has a great influence on people's motivation to migrate in. Therefore, we choose the household income as a major aconomic metrics and expore its relationship with the inbound migration rate.")
 url = "https://www.census.gov/data/datasets/2010/demo/saipe/2010-state-and-county.html"
@@ -409,7 +421,9 @@ st.write("Therefore there is no visible correlation between each state's inbound
 
 ##VIZ 4-2
 ## Education
-st.header("Education - Explore the Correlation Between Inbound Migration Rate with Educational Ratio in All States in the United States")
+st.header("2-2 Education")
+st.subheader("Explore the Correlation Between Inbound Migration Rate with Educational Ratio in All States in the United States")
+
 st.write("Young people have a strong motivation to move from one area to another if the education is of high quality. \
           We will investigate the correlation between educational attainment and the rate of immigration into all US states in this section. \
           To examine the correlation, we will first plot the educational ratio and the inbound migration rate for each state side by side.")
@@ -502,7 +516,8 @@ st.write("Therefore, there is no visible correlation between each state's inboun
 
 ##VIZ 4-3
 ################################################### Job Market and Migration Rate ###########################################
-st.header("Explore the Correlation Between Migration Rate with Employment Rate in All States in the United States")
+st.header("2-3 Job Market")
+st.subheader("Explore the Correlation Between Migration Rate with Employment Rate in All States in the United States")
 st.write("As we all know, good job market is a great incentive for people to migrate from one place to another. \
           In this section, we intend to explore the correlation between the employment rate and migrate in rates in all US states. \
           We will first try to map employment rate and migrate in rate in the granularity of states side by side to explore this correlation.")
@@ -596,14 +611,4 @@ st.write("Pearson correlation coefficient bewteen employment rate and inbound ra
 st.write(c)
 st.write("From the plot chart above, we can see the correlation coefficient is 0.19, so there is a week positive correlation between migration in rate and the Employment rate. From this week correlation, we can extrapolate that there might be other factors influence people's decision to migrate one state to another. That is to say employement rate is not the only and determing factor.")
 
-#NAVIGATION SIDEBAR
-with st.sidebar:
-    st.markdown('# Navigation')
-    st.markdown('## Overview')
-    st.markdown('## Most/least popular destinations')
-    st.markdown('## Migration rate by sate')
-    st.markdown("## Factors influencing migration rate")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; [Household Income](#household-income)")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Education")
-    st.markdown("### &nbsp;&nbsp;&nbsp;&nbsp; Job Market")
 
