@@ -9,8 +9,8 @@
 ## Work distribution
 
 
-| Team Member     |                Responsible Parts                                                               |
-| :---            |    :----:                                                                                      |   
+| Team Member     | Responsible Parts                                                                              |              
+| :---            | :----                                                                                          |   
 | Cuiting         |                                                                                                | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
 | Ren             |                                                                                                | 
