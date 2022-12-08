@@ -34,6 +34,7 @@ st.markdown(
 
 ## NEW PROJECT START ##
 st.title("U.S. Young Adult Migration Analysis")
+image = Image.open('migrant_health.jpg')
 
 #NAVIGATION SIDEBAR
 with st.sidebar:
