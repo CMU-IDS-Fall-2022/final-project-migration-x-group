@@ -4,7 +4,7 @@
 * **Online URL**: [App](https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
 * **Team members**:
   * Contact person: </br>
-    cuitingl@andrew.cmu.edu, haoyuw2@andrew.cmu.edu, ddbutler@andrew.cmu.edu, xinzhuwa@andrew.cmu.edu, yuesun@andrew.cmu.edu
+    Cuiting Li, Haoyu Wang, Darren Butler, Xinzhu Wang, Yue Sun
 
 ## Work distribution
 
@@ -20,7 +20,7 @@
 ## Deliverables
 
 ### Abstract
-Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. Information on migration patterns of young adults can be useful for stakeholders in economic development such as policy makers and employers. Therefore, we created an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state. We found that INSERT SUMMARY OF 1-2 TOP INSIGHTS.
+Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. Information on migration patterns of young adults can be useful for stakeholders in economic development such as policy makers and employers. Therefore, we created an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state. 
 
 ### Summary Image
 [![app-screenshot.jpg](https://i.postimg.cc/BQQV9tnj/app-screenshot.jpg)](https://postimg.cc/XXm89jFW)
@@ -51,5 +51,5 @@ Follow the instructions listed in the application.
 
 
 ### Obstacles
-- If you encounter the error: pip's dependency resolver does not currently take into account all the packages that are installed <br/>
+- If you encounter the error: "pip's dependency resolver does not currently take into account all the packages that are installed" <br/>
   please use:  !pip install -r requirements.txt --use-deprecated=legacy-resolver 
