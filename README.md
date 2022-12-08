@@ -9,13 +9,13 @@
 ## Work distribution
 
 
-| Team Member     |                Responsible Parts                                  |
-| :---            |    :----:                                                         |   
-| Cuiting         | Migration Analysis by Race and State; Popular Migration Routes    | 
-| Haoyu Wang      |                                                                   | 
-| Ren             |                                                                   | 
-| Xinzhu          |                                                                   | 
-| Yue             |                                                                   | 
+| Team Member     |                Responsible Parts                                                               |
+| :---            |    :----:                                                                                      |   
+| Cuiting         |                                                                                                | 
+| Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
+| Ren             |                                                                                                | 
+| Xinzhu          |                                                                                                | 
+| Yue             |                                                                                                | 
 
 ## Deliverables
 
