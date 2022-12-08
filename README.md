@@ -11,11 +11,12 @@
 
 | Team Member     | Responsible Parts                                                                              |              
 | :---            | :----                                                                                          |   
-| Cuiting         |                                                                                                | 
+| Ren        |                                                                                                | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
-| Ren             |                                                                                                | 
+                                                                                           | 
 | Xinzhu          |                                                                                                | 
-| Yue             | Migration Rate Analysis with Educational Ratio                                                 | 
+| Yue             | Migration Rate Analysis with Educational Ratio   
+| Cuiting Li      | Migration Rate Analysis with Employment Ratio                                              | 
 
 ## Deliverables
 
