@@ -13,6 +13,8 @@ import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
 @st.cache(allow_output_mutation=True)  # add caching so we load the data only once
+def load_data(file_path):
+    return pd.read_csv(file_path)
 
 def show_state_by_state_migration():
     
@@ -106,9 +108,9 @@ def show_state_by_state_migration():
     #TODO: Insert Bar Chart of Destinations from selected State
     #st.bar_chart(state_lvl_migr)
 
-def show_inbound_map():
+def show_inbound_map(state_lvl_migr):
 
-    state_lvl_migr_df = pd.read_csv("data/state_migration_summary_with_rate.csv")
+    state_lvl_migr_df = state_lvl_migr
     #Specify overview map 
     #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
     map = folium.Map(location=[38, -96.5], zoom_start=3, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
@@ -140,9 +142,9 @@ def show_inbound_map():
     st_map = st_folium(map, width=720, height=450) 
 
 
-def show_outbound_map():
+def show_outbound_map(state_lvl_migr):
 
-    state_lvl_migr_df = pd.read_csv("data/state_migration_summary_with_rate.csv")
+    state_lvl_migr_df = state_lvl_migr
     #Specify overview map 
     #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
     map = folium.Map(location=[38, -96.5], zoom_start=3, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
@@ -184,7 +186,7 @@ def show_inbound_vs_outbound_maps():
         -  `outbound_rate = (adults_migrated from state) / total of adults from state`
         """
     )
-    state_lvl_migr = pd.read_csv("data/state_migration_summary_with_rate.csv")
+    state_lvl_migr = load_data("data/state_migration_summary_with_rate.csv")
 
     if st.checkbox("Show Raw Outbound and Inbound Data"):
         st.write(state_lvl_migr)
@@ -192,7 +194,7 @@ def show_inbound_vs_outbound_maps():
     cols = st.columns(2)
     with cols[0]:
         st.markdown("#### States outbound migration rate")
-        show_outbound_map()
+        show_outbound_map(state_lvl_migr)
         st.markdown(
             """
             Colarado, Nevada, and DC have the highest rate of *departing* young adults moving *from* the states.  Their young adult populations decreased by larger rates than other states.
@@ -202,7 +204,7 @@ def show_inbound_vs_outbound_maps():
         
     with cols[1]:
         st.markdown("#### States inbound migration") 
-        show_inbound_map()
+        show_inbound_map(state_lvl_migr)
 
         st.markdown(
             """
