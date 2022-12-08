@@ -8,7 +8,14 @@
 
 ## Work distribution
 
-Update towards the end of the project.
+
+| Team Member     |                Responsible Parts                                  |
+| :---            |    :----:                                                         |   
+| Cuiting         | Migration Analysis by Race and State; Popular Migration Routes    | 
+| Haoyu Wang      |                                                                   | 
+| Ren             |                                                                   | 
+| Xinzhu          |                                                                   | 
+| Yue             |                                                                   | 
 
 ## Deliverables
 
@@ -16,7 +23,7 @@ Update towards the end of the project.
 Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. Information on migration patterns of young adults can be useful for stakeholders in economic development such as policy makers and employers. Therefore, we created an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state. We found that INSERT SUMMARY OF 1-2 TOP INSIGHTS.
 
 ### Summary Image
-INSERT IMAGE
+[![app-screenshot.jpg](https://i.postimg.cc/BQQV9tnj/app-screenshot.jpg)](https://postimg.cc/XXm89jFW)
 
 ### Video
 INSERT YOUTUBE LINK
