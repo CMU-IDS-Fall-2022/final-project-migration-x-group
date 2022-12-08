@@ -189,7 +189,7 @@ def show_inbound_vs_outbound_maps():
         show_outbound_map(state_lvl_migr)
         st.markdown(
             """
-            Colarado, Nevada, and DC have the highest rate of *departing* young adults moving *from* the states.  Their young adult populations decreased by larger rates than other states.
+            New Hampshire, Vermont, and Wyoming  have the highest rate of *departing* young adults moving *from* the states.  Their young adult populations decreased by larger rates than other states.
             """
         )
         #outbound bar
@@ -200,7 +200,7 @@ def show_inbound_vs_outbound_maps():
 
         st.markdown(
             """
-            New Hampshire, Vermont, and Wyoming have the highest rate of *incoming* young adults moving *into* the states. Their young adult populations increased by larger rates than other states.
+            Colarado, Nevada, and DC have the highest rate of *incoming* young adults moving *into* the states. Their young adult populations increased by larger rates than other states.
             """
         )   
     
