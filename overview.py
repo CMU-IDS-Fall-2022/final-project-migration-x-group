@@ -1,13 +1,7 @@
-from data_munging import ALL_STATES_TITLE
 import pandas as pd
 import numpy as np
 import streamlit as st
-import plot_migration
-from logzero import logger
-import streamlit as st
 import altair as alt
-from re import U
-import seaborn as sns
 
 import folium
 from streamlit_folium import st_folium #interface between strealit and folium
@@ -18,9 +12,7 @@ def load_data(file_path):
 
 def show_state_by_state_migration():
     
-
     ######### VIZ 1 - OVERVIEW MAP #########
-
     #Read state migration data
     state_migration_df = pd.read_csv("data/state_migration.csv")
 
