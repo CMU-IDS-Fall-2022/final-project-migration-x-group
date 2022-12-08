@@ -41,7 +41,7 @@ def show_state_by_state_migration():
 
     #Specify overview map 
     #Folium library quickstart https://python-visualization.github.io/folium/quickstart.html#Choropleth-maps
-    map = folium.Map(location=[38, -96.5], zoom_start=4, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
+    map = folium.Map(location=[38, -96.5], zoom_start=3, scrollWheelZoom=False, tiles='CartoDB positron') #Creating Folium MNap
 
     choropleth = folium.Choropleth(
         geo_data='data/us-state-boundaries.geojson',
