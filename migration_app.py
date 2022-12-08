@@ -74,7 +74,7 @@ schooling or job market?")
 
 st.write(" The dataset we are using for doing the analysis is the The Migration Pattern of Young Adults.")
 if st.checkbox("The Migration Pattern of Young Adults Dataset"):
-    main_dataset = pd.read_csv('data/state_level_migration.csv')
+    main_dataset = load_data('data/state_level_migration.csv')
     st.write(main_dataset)
 
 ## Viz 1-1
@@ -89,23 +89,23 @@ st.subheader("1-2-1 Average Migration Rate By State and Race")
 
 # 1. loading dataset
 # the original od_race file size is too big (>100MB), so divide the big file into several files(<25MB) then load and combine individual dataframe
-od_race1 = pd.read_csv('data/od_race_1.csv')
-od_race2 = pd.read_csv('data/od_race_2.csv')
-od_race3 = pd.read_csv('data/od_race_3.csv')
-od_race4 = pd.read_csv('data/od_race_4.csv')
-od_race5 = pd.read_csv('data/od_race_5.csv')
-od_race6 = pd.read_csv('data/od_race_6.csv')
-od_race7 = pd.read_csv('data/od_race_7.csv')
-od_race8 = pd.read_csv('data/od_race_8.csv')
-od_race9 = pd.read_csv('data/od_race_9.csv')
-od_race10 = pd.read_csv('data/od_race_10.csv')
-od_race11 = pd.read_csv('data/od_race_11.csv')
-od_race12 = pd.read_csv('data/od_race_12.csv')
-od_race13 = pd.read_csv('data/od_race_13.csv')
-od_race14 = pd.read_csv('data/od_race_14.csv')
-od_race15 = pd.read_csv('data/od_race_15.csv')
-od_race16 = pd.read_csv('data/od_race_16.csv')
-od_race17 = pd.read_csv('data/od_race_17.csv')
+od_race1 = load_data('data/od_race_1.csv')
+od_race2 = load_data('data/od_race_2.csv')
+od_race3 = load_data('data/od_race_3.csv')
+od_race4 = load_data('data/od_race_4.csv')
+od_race5 = load_data('data/od_race_5.csv')
+od_race6 = load_data('data/od_race_6.csv')
+od_race7 = load_data('data/od_race_7.csv')
+od_race8 = load_data('data/od_race_8.csv')
+od_race9 = load_data('data/od_race_9.csv')
+od_race10 = load_data('data/od_race_10.csv')
+od_race11 = load_data('data/od_race_11.csv')
+od_race12 = load_data('data/od_race_12.csv')
+od_race13 = load_data('data/od_race_13.csv')
+od_race14 = load_data('data/od_race_14.csv')
+od_race15 = load_data('data/od_race_15.csv')
+od_race16 = load_data('data/od_race_16.csv')
+od_race17 = load_data('data/od_race_17.csv')
 
 od_race = pd.concat([od_race1,od_race2,od_race3,od_race4,od_race5,od_race6,od_race7,od_race8,od_race9,od_race10,od_race10,od_race12,od_race13,od_race14,od_race15,od_race16,od_race17 ],
 ignore_index = True, sort = False)
@@ -162,7 +162,7 @@ st.text("The sample includes all children who are born in the U.S. between 1984-
         "For these participants, age 16 corresponds to the year from 2000 to 2008.")
 ##VIZ 3 
 st.markdown("### 1-3 Popular Migration Routes")
-state_lvl_migr = pd.read_csv("data/state_migration_summary.csv")
+state_lvl_migr = load_data("data/state_migration_summary.csv")
 state_lvl_migr_rate = state_lvl_migr.copy()
 state_lvl_migr_rate['total'] = state_lvl_migr_rate['inbound_migration'] + state_lvl_migr_rate['outbound_migration'] + state_lvl_migr_rate['within_state_migration']
 state_lvl_migr_rate['inbound_rate'] = state_lvl_migr_rate['inbound_migration'] / state_lvl_migr_rate['total']
@@ -193,7 +193,7 @@ with cols[1]:
 
 st.markdown("##### Top 1 state with highest outbound migration rate is New Hampshire")
 st.markdown('##### Let Us Discover Popular Routes for New Hampshire')
-state_migration_pivot = pd.read_csv("data/state_migration_pivot.csv")
+state_migration_pivot = load_data("data/state_migration_pivot.csv")
 nh = state_migration_pivot\
              .query("(o_state_name  == 'New Hampshire')")
 
@@ -219,8 +219,8 @@ st.write(
     bar_outbound
 )
 st.markdown('##### \U0001F348 Massachussetts, Maine and New York are the top 3 destination states for young adult of New Hampshire migrated to.')
-df_education_2008 = pd.read_csv("data/2008 Grading Summary.csv")
-df_migration = pd.read_csv("data/state_migration_summary.csv")
+df_education_2008 = load_data("data/2008 Grading Summary.csv")
+df_migration = load_data("data/state_migration_summary.csv")
 
 education_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
 choropleth_grade = folium.Choropleth(
@@ -250,8 +250,8 @@ right = st.write('Massachussetts and New York have the highest gradings in 2008'
 st.write("data source: https://www.edweek.org/policy-politics/grading-the-states/2008/01")
 
 # Correlation 
-df_migration = pd.read_csv("data/state_migration_summary.csv")
-df_higher_education = pd.read_csv("data/Higher_Edu_RatioByState.csv")
+df_migration = load_data("data/state_migration_summary.csv")
+df_higher_education = load_data("data/Higher_Edu_RatioByState.csv")
 
 correlation = df_migration['inbound_migration_rate'].corr(df_higher_education['higher_edu_ratio'])
 c1 = str(round(correlation,3))
@@ -344,7 +344,7 @@ st.markdown(
         """
     )
 
-df_income = pd.read_csv("data/state_income_for_viz.csv")
+df_income = load_data("data/state_income_for_viz.csv")
 df_income =df_income.rename(columns={"average_from_2010": "Average Household Income"})
 df_income =df_income.rename(columns={"state_name": "State"})
 df_income =df_income.rename(columns={"inbound_migration_rate": "Inbound Migration Rate"})
@@ -399,7 +399,7 @@ with cols[1]:
     st.write("#### Inbound Migration Rates for all States in the United States")
     right = st_folium(migration_map, width=420, height=300)
 
-df_income = pd.read_csv("data/state_income_for_viz.csv")
+df_income = load_data("data/state_income_for_viz.csv")
 
 scatter_income = alt.Chart(df_income_backup).mark_circle(size=50).encode(
     x='Average Household Income:Q',
@@ -427,8 +427,8 @@ st.subheader("Explore the Correlation Between Inbound Migration Rate with Educat
 st.write("Young people have a strong motivation to move from one area to another if the education is of high quality. \
           We will investigate the correlation between educational attainment and the rate of immigration into all US states in this section. \
           To examine the correlation, we will first plot the educational ratio and the inbound migration rate for each state side by side.")
-df_education = pd.read_csv("data/Educational_Migration.csv")
-df_migration = pd.read_csv("data/state_migration_summary.csv")
+df_education = load_data("data/Educational_Migration.csv")
+df_migration = load_data("data/state_migration_summary.csv")
 
 education_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
 migration_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
@@ -522,7 +522,7 @@ st.write("As we all know, good job market is a great incentive for people to mig
           In this section, we intend to explore the correlation between the employment rate and migrate in rates in all US states. \
           We will first try to map employment rate and migrate in rate in the granularity of states side by side to explore this correlation.")
 
-df = pd.read_csv('data/employment_migration.csv')
+df = load_data('data/employment_migration.csv')
 df.rename(columns={df.columns[0]:'index'}, inplace=True)
 df.rename(columns={df.columns[4]:'inbound_rate'}, inplace=True)
 df = df.round({'employment_rate': 2})
