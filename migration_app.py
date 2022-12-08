@@ -59,7 +59,7 @@ with st.sidebar:
 # Main
 ## Viz 1-1
 
-st.markdown("## Overview of Young Adult Migration")
+st.markdown("## 1. Overview of Young Adult Migration")
 st.write(
     """ 
     Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
