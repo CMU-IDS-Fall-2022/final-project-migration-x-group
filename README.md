@@ -15,7 +15,7 @@
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
 | Ren             |                                                                                                | 
 | Xinzhu          |                                                                                                | 
-| Yue             |                                                                                                | 
+| Yue             | Migration Rate Analysis with Educational Ratio                                                 | 
 
 ## Deliverables
 
