@@ -1,23 +1,14 @@
-import data_munging
-import median_income_process
-from data_munging import ALL_STATES_TITLE
 import pandas as pd
 import numpy as np
 import streamlit as st
-import plot_migration
-from logzero import logger
-import streamlit as st
 import altair as alt
-from re import U
-import seaborn as sns
-import plotly.express as px
 
 import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
 #import team files
 import overview
-
+import median_income_process
 
 @st.cache(allow_output_mutation=True)  # add caching so we load the data only once
 def load_data(file_path):
