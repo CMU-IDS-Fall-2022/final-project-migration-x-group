@@ -322,16 +322,28 @@ st.header("Factors influencing migration rate")
 st.header("Household Income")
 st.subheader("How do median household incomes affect each state's inbound migration rate?")
 st.write("The economic level of an area has a great influence on people's motivation to migrate in. Therefore, we choose the household income as a major aconomic metrics and expore its relationship with the inbound migration rate.")
+url = "https://www.census.gov/data/datasets/2010/demo/saipe/2010-state-and-county.html"
+
+st.write("The household income data comes from the [SAIPE ‘State and County Estimates’ Datasets](%s) on the United States Census Bureau website."%url)
+st.markdown(
+        """
+        We calculate the Average Household Income as follows:
+        -  `Avergae Household Income = Average(household income median from 2010 to 2018)`
+        """
+    )
 
 df_income = pd.read_csv("data/state_income_for_viz.csv")
-
-employment_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
+df_income =df_income.rename(columns={"average_from_2010": "Average Household Income"})
+df_income =df_income.rename(columns={"state_name": "State"})
+df_income =df_income.rename(columns={"inbound_migration_rate": "Inbound Migration Rate"})
+df_income_backup = df_income
+income_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
 migration_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
 
 choropleth = folium.Choropleth(
     geo_data='us-state-boundaries.geojson',
     data=df_income,
-    columns=('state_name', 'average_household_income_median'),
+    columns=('State', 'Average Household Income'),
     key_on='feature.properties.name',
     line_opacity=0.8,
     highlight=True,
@@ -340,27 +352,27 @@ choropleth = folium.Choropleth(
 choropleth1 = folium.Choropleth(
     geo_data='us-state-boundaries.geojson',
     data=df_income,
-    columns=('state_name', 'inbound_migration_rate'),
+    columns=('State', 'Inbound Migration Rate'),
     key_on='feature.properties.name',
     line_opacity=0.8,
     highlight=True,
 )
-choropleth.geojson.add_to(employment_map)
+choropleth.geojson.add_to(income_map)
 choropleth1.geojson.add_to(migration_map)
 
-df_income = df_income.set_index('state_name')
+df_income = df_income.set_index('State')
 for feature in choropleth.geojson.data['features']:
     state_name = feature['properties']['name']
-    feature['properties']['employment'] = 'employment rate: ' + str(df_income.loc[state_name, 'average_household_income_median'] 
+    feature['properties']['income'] = 'household income: ' + str(df_income.loc[state_name, 'Average Household Income'] 
                                                                     if state_name in list(df_income.index) else 'N/A')
       
 for feature in choropleth1.geojson.data['features']:
     state_name = feature['properties']['name']
-    feature['properties']['migration'] = 'inbound rate: ' + str(df_income.loc[state_name, 'inbound_migration_rate'] 
+    feature['properties']['migration'] = 'inbound rate: ' + str(df_income.loc[state_name, 'Inbound Migration Rate'] 
                                                                     if state_name in list(df_income.index) else 'N/A')
 
 choropleth.geojson.add_child(
-    folium.features.GeoJsonTooltip(['name','employment'], labels=False)
+    folium.features.GeoJsonTooltip(['name','income'], labels=False)
 )
 
 choropleth1.geojson.add_child(
@@ -370,17 +382,17 @@ choropleth1.geojson.add_child(
 cols = st.columns(2)
 with cols[0]:
     st.write("#### Average Household Income for all States in the United States")
-    left = st_folium(employment_map, width=420, height=300)
+    left = st_folium(income_map, width=420, height=300)
 with cols[1]:
     st.write("#### Inbound Migration Rates for all States in the United States")
     right = st_folium(migration_map, width=420, height=300)
 
-df_income_new = pd.read_csv("data/state_income_for_viz.csv")
+df_income = pd.read_csv("data/state_income_for_viz.csv")
 
-scatter_income = alt.Chart(df_income_new).mark_circle(size=50).encode(
-    x='average_household_income_median:Q',
-    y='inbound_migration_rate:Q',
-    tooltip=['state_name','average_household_income_median','inbound_migration_rate']
+scatter_income = alt.Chart(df_income_backup).mark_circle(size=50).encode(
+    x='Average Household Income:Q',
+    y='Inbound Migration Rate:Q',
+    tooltip=['State','Average Household Income','Inbound Migration Rate']
 ).properties(
     height = 400,
     width = 600,
@@ -390,7 +402,7 @@ scatter_income.title = 'Inbound Migration Rate and Average Median Household Inco
 st.write(scatter_income)
 
 st.write("#### Correlation Analysis")
-correlation = median_income_process.calculateCorrelation(df_income_new)
+correlation = median_income_process.calculateCorrelation(df_income_backup)
 st.write("Pearson correlation coefficient")
 st.write(correlation)
 st.write("Therefore there is no visible correlation between each state's inbound migration rate and average household income median.")
