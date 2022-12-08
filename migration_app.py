@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import altair as alt
-
+from PIL import Image
 import folium
 from streamlit_folium import st_folium #interface between strealit and folium
 
