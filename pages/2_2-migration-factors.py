@@ -228,16 +228,32 @@ st.write("As we all know, good job market is a great incentive for people to mig
           In this section, we intend to explore the correlation between the employment rate and migrate in rates in all US states. \
           We will first try to map employment rate and migrate in rate in the granularity of states side by side to explore this correlation.")
 
-df = load_data('data/employment_migration.csv')
+urlll = "https://data.census.gov/table?q=job+opening+by+county&tid=ACSDP1Y2021.DP03"
+
+st.write("The employment data comes from the [ACS 5-Year Estimates Equal Employment Opportunity](%s) on the United States Census Bureau website."%urlll)
+st.markdown(
+        """
+        We calculate the Educational Ratio as follows:
+        -  `Employment Ratio = Average(employment ratio from 2010 to 2021)`
+        """
+    )
+# df = pd.read_csv('data/employment_migration_vis.csv')
+df = load_data('data/employment_migration_vis.csv')
+if st.checkbox("Show Employment and Migration Data"):
+    st.write(df)
+# st.write(df)
 df.rename(columns={df.columns[0]:'index'}, inplace=True)
 df.rename(columns={df.columns[4]:'inbound_rate'}, inplace=True)
 df = df.round({'employment_rate': 2})
+df['employment_rate'] = df['employment_rate'].div(100).round(2)
 df = df.round({'inbound_rate': 2})
 dropp = df[df.state == 'Puerto Rico'].index
 df = df.drop(dropp)
 df1 = df
-if st.checkbox("Show Employment and Migration Data"):
-    st.write(df)
+# st.write(df1)
+# if st.checkbox("Show Employment and Migration Data"):
+#     st.write(df)
+
 
 employment_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
 migration_map = folium.Map(location=[38, -96.5], zoom_start=3.4, scrollWheelZoom=False, tiles='CartoDB positron')
@@ -295,9 +311,7 @@ st.write("From the two maps shown above, we can see that there are some correlat
            We also drop two outliers of Delaware and Puerto Rico to increase the accuracy of the correlation coeffient.")
 
 #Drop outliner of Delaware and Puerto Rico
-drop1 = df1[df1.state == 'Delaware'].index
 drop2 = df1[df1.state == 'Puerto Rico'].index
-df1 = df1.drop(drop1)
 df1 = df1.drop(drop2)
 
 bar_chart =  alt.Chart(df1).mark_point().encode(
@@ -315,6 +329,6 @@ correlation = df1['employment_rate'].corr(df1['inbound_rate'])
 c = str(round(correlation, 2))
 st.write("Pearson correlation coefficient bewteen employment rate and inbound rate is:")
 st.write(c)
-st.write("From the plot chart above, we can see the correlation coefficient is 0.19, so there is a week positive correlation between migration in rate and the Employment rate. From this week correlation, we can extrapolate that there might be other factors influence people's decision to migrate one state to another. That is to say employement rate is not the only and determing factor.")
+st.write("From the plot chart above, we can see the correlation coefficient is 0.1, so there is a very week positive correlation between inbound rate and the Employment rate. From this week correlation, we can extrapolate that there might be other factors influence people's decision to migrate one state to another. That is to say employement rate is not the only and determing factor.")
 
 

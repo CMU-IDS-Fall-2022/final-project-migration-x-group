@@ -41,21 +41,17 @@ st.title("U.S. Young Adult Migration Analysis")
 # Welcome page
 
 
+st.markdown("## 1. Overview of Young Adult Migration")
 st.write(
     """ 
     Young adults entering the workforce are important to economic development, but some states in the U.S. see more migration of young adults than others, leading to inequities in workforce development. \
     Therefore, we propose an interactive data science application that allows stakeholders in economic development to interpret migration patterns of young adults from their state.
     """
 )
+uu = "https://www.google.com/url?q=https://data.migrationpatterns.org/MigrationPatternsData.zip&sa=D&source=docs&ust=1670519605674757&usg=AOvVaw2DKNPWFq0nVsB9iRxCD3Vu"
+st.write("We use the dataset [Migration Pattern of Young Adults](%s) to explore migration patterns of young people such as inbound rate and outbound rates for different states, average migration rate, popular migration routs and etc. "%uu)
 
-st.write(" Do you ever wonder how far people migrate between childhood and young adulthood? Where do they go? How much does one's location during childhood determine the labor markets that \
-one is exposed to in young adulthood?We want to explore these questions using publicly available statistics on the migration patterns of young adults in the United States. \
-Use this resource to discover where people in your hometown moved as young adults. What are the reasons behind young adult migration? Is it related to parental income, \
-schooling or job market?")
+st.write("We also use another three datasets to explore factors that we thought might affect migration rates including household income, education resources and job market.")
 
-st.markdown(" We conduct a state-level analysis of [The Migration Pattern of Young Adults dataset](https://www.census.gov/newsroom/press-kits/2022/young-adult-migration.html) from the Census Bureau.")
-if st.checkbox("See Pivot Table of Migration Pattern of Young Adults Dataset"):
-    main_dataset = load_data('data/state_level_migration.csv')
-    st.write(main_dataset)
 
 st.header("⬅️ Explore the data on each page in the sidebar!")
