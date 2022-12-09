@@ -26,21 +26,21 @@ Young adults entering the workforce are important to economic development, but s
 ### Video
 https://www.youtube.com/watch?v=5ZyIq0oZ7W0
 
-### [Application Link]
-- [ ] (https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
+### Application Link
+https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/
 
 ### Instructions
-- [ ] Follow the navigation section located on the left side in the application
+Follow the navigation section located on the left side in the application
 
 ### Proposal
 - [ ] The URL at the top of this readme needs to point to your application online. It should also list the names of the team members.
 - [ ] A completed [proposal](Proposal.md). Each student should submit the URL that points to this file in their github repo on Canvas.
 
 ### Sketches
-- [ ] Develop sketches/prototype of your project (included in the proposal.md)
+Develop sketches/prototype of your project (included in the proposal.md)
 
 ### Project Progress
-- [ ] https://docs.google.com/document/d/1ZmD0NZeaJUpIBE_zfhRqgAIh_X6AE2l3qPlQ_hRNq3g/edit#
+https://docs.google.com/document/d/1ZmD0NZeaJUpIBE_zfhRqgAIh_X6AE2l3qPlQ_hRNq3g/edit#
 
 
 ### Final deliverables
