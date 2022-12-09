@@ -7,14 +7,12 @@
     Cuiting Li, Haoyu Wang, Darren Butler, Xinzhu Wang, Yue Sun
 
 ## Work distribution
-
-
 | Team Member     | Responsible Parts                                                                              |              
 | :---            | :----                                                                                          |   
 | Ren             |                                                                                                | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
 | Xinzhu          | Migration Rate Analysis with Household Incomes                                                 | 
-| Yue             | Migration Rate Analysis with Educational Ratio   
+| Yue             | Migration Rate Analysis with Educational Ratio                                                 |
 | Cuiting Li      | Migration Rate Analysis with Employment Ratio                                                  | 
 
 ## Deliverables
@@ -28,25 +26,24 @@ Young adults entering the workforce are important to economic development, but s
 ### Video
 https://www.youtube.com/watch?v=5ZyIq0oZ7W0
 
-### [Application Link](https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
+### [Application Link]
+- [ ] (https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
 
 ### Instructions
-Follow the instructions listed in the application.
+- [ ] Follow the navigation section located on the left side in the application
 
 ### Proposal
-
 - [ ] The URL at the top of this readme needs to point to your application online. It should also list the names of the team members.
 - [ ] A completed [proposal](Proposal.md). Each student should submit the URL that points to this file in their github repo on Canvas.
 
 ### Sketches
-
-- [ ] Develop sketches/prototype of your project.
+- [ ] Develop sketches/prototype of your project (included in the proposal.md)
 
 ### Project Progress
-https://docs.google.com/document/d/1ZmD0NZeaJUpIBE_zfhRqgAIh_X6AE2l3qPlQ_hRNq3g/edit#
+- [ ] https://docs.google.com/document/d/1ZmD0NZeaJUpIBE_zfhRqgAIh_X6AE2l3qPlQ_hRNq3g/edit#
+
 
 ### Final deliverables
-
 - [ ] All code for the project should be in the repo.
 - [ ] Update the **Online URL** above to point to your deployed project.
 - [ ] A detailed [project report](Report.md).  Each student should submit the URL that points to this file in their github repo on Canvas.
