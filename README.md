@@ -9,7 +9,7 @@
 ## Work distribution
 | Team Member     | Responsible Parts                                                                              |              
 | :---            | :----                                                                                          |   
-| Ren             |                                                                                                | 
+| Ren             | Inbound vs Outbound Rates; State by State Migration                                            | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
 | Xinzhu          | Migration Rate Analysis with Household Incomes                                                 | 
 | Yue             | Migration Rate Analysis with Educational Ratio                                                 |
