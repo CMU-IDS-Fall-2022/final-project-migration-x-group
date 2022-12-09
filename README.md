@@ -42,6 +42,9 @@ Follow the instructions listed in the application.
 
 - [ ] Develop sketches/prototype of your project.
 
+### Project Progress
+https://docs.google.com/document/d/1ZmD0NZeaJUpIBE_zfhRqgAIh_X6AE2l3qPlQ_hRNq3g/edit#
+
 ### Final deliverables
 
 - [ ] All code for the project should be in the repo.
