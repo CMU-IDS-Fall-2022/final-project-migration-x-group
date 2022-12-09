@@ -11,11 +11,11 @@
 
 | Team Member     | Responsible Parts                                                                              |              
 | :---            | :----                                                                                          |   
-| Ren        |                                                                                                | 
+| Ren             |                                                                                                | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
-| Xinzhu          | Migration Rate Analysis with Household Incomes                                                                                        | 
+| Xinzhu          | Migration Rate Analysis with Household Incomes                                                 | 
 | Yue             | Migration Rate Analysis with Educational Ratio   
-| Cuiting Li      | Migration Rate Analysis with Employment Ratio                                              | 
+| Cuiting Li      | Migration Rate Analysis with Employment Ratio                                                  | 
 
 ## Deliverables
 
@@ -26,7 +26,7 @@ Young adults entering the workforce are important to economic development, but s
 [![app-screenshot.jpg](https://i.postimg.cc/BQQV9tnj/app-screenshot.jpg)](https://postimg.cc/XXm89jFW)
 
 ### Video
-INSERT YOUTUBE LINK
+https://www.youtube.com/watch?v=5ZyIq0oZ7W0
 
 ### [Application Link](https://cmu-ids-fall-2022-final-project-migration-x-grou-welcome-xfpxlx.streamlit.app/)
 
