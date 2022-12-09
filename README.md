@@ -50,6 +50,6 @@ Follow the instructions listed in the application.
 - [ ] A 5 minute video demonstration.  Upload the video to this github repo and link to it from your report.
 
 
-### Obstacles
+### Notes
 - If you encounter the error: "pip's dependency resolver does not currently take into account all the packages that are installed" <br/>
   please use:  !pip install -r requirements.txt --use-deprecated=legacy-resolver 
