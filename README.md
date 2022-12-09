@@ -14,7 +14,7 @@
 | Ren        |                                                                                                | 
 | Haoyu Wang      | Migration Analysis by Race and State; Popular Migration Routes                                 |                               
                                                                                            | 
-| Xinzhu          |                                                                                                | 
+| Xinzhu          | Migration Rate Analysis with Household Incomes                                                                                        | 
 | Yue             | Migration Rate Analysis with Educational Ratio   
 | Cuiting Li      | Migration Rate Analysis with Employment Ratio                                              | 
 
